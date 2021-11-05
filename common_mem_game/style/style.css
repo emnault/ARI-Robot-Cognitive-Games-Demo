@@ -1,7 +1,7 @@
 :root {
 	--xxl-font: 190px;
 	--l-font: 49px; 
-	--m-font: 45px;
+	--m-font: 25px;
 	--s-font: 33px; 
 	--xs-font: 23px;
 	--ghost-white: #f8f8f8;
@@ -10,6 +10,7 @@
 	--dark-green: #1e362e;
 	--light-brown: #be9335;
 	--brown: #844827;
+  --black: #000000;
   --standart-grey: #5f6368;
 }
 body {
@@ -56,7 +57,7 @@ body {
   width: 200px;
 }
 .big-green-btn {
-    background-color: var(--green);
+    background-color: var(--black);
     font-size: var(--s-font);
     color: white;
     font-weight: 500;
@@ -68,15 +69,15 @@ body {
     align-items: center;
 }
 .big-green-btn:hover {
-	background-color: var(--hover-green);
+	background-color: var(--hover-black);
 }
 .green-title {
-  color: var(--green);
+  color: var(--black);
   font-weight: 600;
   font-size: var(--s-font);
 }
 .text-msg {
-  color: var(--dark-green);
+  color: var(--dark-black);
   font-size: var(--m-font);
 }
 
