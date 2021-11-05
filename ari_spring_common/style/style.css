@@ -1,0 +1,129 @@
+:root {
+	--xxl-font: 190px;
+	--l-font: 49px; 
+	--m-font: 45px;
+	--s-font: 33px; 
+	--xs-font: 23px;
+	--ghost-white: #f8f8f8;
+	--green: #6ca843;
+	--hover-green: #4c901e;
+	--dark-green: #1e362e;
+	--light-brown: #be9335;
+	--brown: #844827;
+  --standart-grey: #5f6368;
+}
+body {
+	overflow: hidden;
+	font-family: Montserrat;
+	color: #474645!important;
+	margin: 0;
+	height: 800px;
+	width: 1280px;
+}
+.d-none {
+    display: none!important;
+}
+.centered-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.flex-start-column {
+	display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+.mt-10 {
+  margin-top: 10%;
+}
+.w-100 {
+  width: 100%;
+}
+.main-container {
+	display: flex;
+  height: 100%;
+  width: 100%;
+}
+.logo-container {
+  position: absolute;
+  position: absolute;
+  top: 25px;
+  left: 20px;
+}
+.logo-container img {
+  width: 200px;
+}
+.big-green-btn {
+    background-color: var(--green);
+    font-size: var(--s-font);
+    color: white;
+    font-weight: 500;
+    border-radius: 10px;
+    width: 300px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.big-green-btn:hover {
+	background-color: var(--hover-green);
+}
+.green-title {
+  color: var(--green);
+  font-weight: 600;
+  font-size: var(--s-font);
+}
+.text-msg {
+  color: var(--dark-green);
+  font-size: var(--m-font);
+}
+
+.screensaver {
+  position: absolute;
+  background: white;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+overflow: hidden!important;
+}
+.screensaver-logo {
+  width: 730px;
+}
+.screensaver-text {
+  margin-bottom: -100px;
+  font-size: 35px;
+  margin-top: 90px;
+  display: flex;
+}
+.screensaver-text img {
+  width: 45px;
+  margin-bottom: -4px;
+  opacity: 70%;
+}
+.screensaver:after {
+  content:'';
+  top:0;
+  transform:translateX(100%) rotate(90deg);
+  width:100%;
+  height:800px;
+  position: absolute;
+  z-index:1;
+  animation: slide 5s infinite;
+  background: linear-gradient(to right, 
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0) 10%,
+    rgba(255,255,255,0.8) 50%,
+    rgba(128,186,232,0) 80%,
+    rgba(125,185,232,0) 100%);
+}
+@keyframes slide {
+  0% {transform:translateX(-100%);}
+  100% {transform:translateX(100%);}
+}
