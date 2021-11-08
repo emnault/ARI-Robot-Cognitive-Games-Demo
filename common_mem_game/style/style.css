@@ -1,8 +1,8 @@
 :root {
 	--xxl-font: 190px;
-	--l-font: 49px; 
-	--m-font: 25px;
-	--s-font: 33px; 
+	--l-font: 45px; 
+	--m-font: 35px;
+	--s-font: 28px; 
 	--xs-font: 23px;
 	--ghost-white: #f8f8f8;
 	--green: #6ca843;
@@ -69,16 +69,24 @@ body {
     align-items: center;
 }
 .big-green-btn:hover {
-	background-color: var(--hover-black);
+	background-color: var(--black);
 }
 .green-title {
   color: var(--black);
   font-weight: 600;
-  font-size: var(--s-font);
+  font-size: var(--l-font);
 }
 .text-msg {
-  color: var(--dark-black);
+  color: var(--black);
   font-size: var(--m-font);
+}
+.radio-msg {
+  color: var(--black);
+  font-size: var(--m-font);
+}
+.instructions-msg{
+  color: var(--black);
+  font-size: var(--s-font);
 }
 
 .screensaver {

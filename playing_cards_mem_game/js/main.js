@@ -66,11 +66,11 @@ let default_web = new DefaultWeb();
 // Add event listeners
 $(document).ready(function() {
   default_web.firstFrase();
-  $("#restart").on("touchend", function(){
-    window.open("../memory_game/index.html", "_self");
+  $("#back").on("touchend", function(){
+    window.open("../pre_ratings_mem_game/index.html", "_self");
   });
-  $("#exit").on("touchend", function(){
-    window.open("../games_menu/index.html", "_self");
+  $("#next").on("touchend", function(){
+    window.open("../post_ratings_mem_game/index.html", "_self");
 
   });
 });
@@ -193,61 +193,61 @@ $(document).ready(function() {
 	var cardsH = [
 		{
 			name: "AH",
-			img: "../memory_game_playing_cards/images/AH.png",
+			img: "../playing_cards_mem_game/images/AH.png",
 			id: 1,
 		},
 		
 		{
 			name: "2H",
-			img: "../memory_game_playing_cards/images/2H.png",
+			img: "../playing_cards_mem_game/images/2H.png",
 			id: 2,
 		},
 		
 		{
 			name: "3H",
-			img: "../memory_game_playing_cards/images/3H.png",
+			img: "../playing_cards_mem_game/images/3H.png",
 			id: 3,
 		},
 		
 		{
 			name: "4H",
-			img: "../memory_game_playing_cards/images/4H.png",
+			img: "../playing_cards_mem_game/images/4H.png",
 			id: 4,
 		},
 		
 		{
 			name: "5H",
-			img: "../memory_game_playing_cards/images/5H.png",
+			img: "../playing_cards_mem_game/images/5H.png",
 			id: 5,
 		},
 		
 		{
 			name: "6H",
-			img: "../memory_game_playing_cards/images/6H.png",
+			img: "../playing_cards_mem_game/images/6H.png",
 			id: 6,
 		},
 		
 		{
 			name: "7H",
-			img: "../memory_game_playing_cards/images/7H.png",
+			img: "../playing_cards_mem_game/images/7H.png",
 			id: 7,
 		},
 		
 		{
 			name: "8H",
-			img: "../memory_game_playing_cards/images/8H.png",
+			img: "../playing_cards_mem_game/images/8H.png",
 			id: 8,
 		},
 		
 		{
 			name: "9H",
-			img: "../memory_game_playing_cards/images/9H.png",
+			img: "../playing_cards_mem_game/images/9H.png",
 			id: 9,
 		},
 		
 		{
 			name: "10H",
-			img: "../memory_game_playing_cards/images/10H.png",
+			img: "../playing_cards_mem_game/images/10H.png",
 			id: 10,
 		}
 		
@@ -266,52 +266,52 @@ $(document).ready(function() {
 	var cardsD = [
 		{
 			name: "AD",
-			img: "../memory_game_playing_cards/images/AD.png",
+			img: "../playing_cards_mem_game/images/AD.png",
 			id: 1,
 		},
 		{
 			name: "2D",
-			img: "../memory_game_playing_cards/images/2D.png",
+			img: "../playing_cards_mem_game/images/2D.png",
 			id: 2,
 		},
 		{
 			name: "3D",
-			img: "../memory_game_playing_cards/images/3D.png",
+			img: "../playing_cards_mem_game/images/3D.png",
 			id: 3,
 		},
 		{
 			name: "4D",
-			img: "../memory_game_playing_cards/images/4D.png",
+			img: "../playing_cards_mem_game/images/4D.png",
 			id: 4,
 		},
 		{
 			name: "5D",
-			img: "../memory_game_playing_cards/images/5D.png",
+			img: "../playing_cards_mem_game/images/5D.png",
 			id: 5,
 		},
 		{
 			name: "6D",
-			img: "../memory_game_playing_cards/images/6D.png",
+			img: "../playing_cards_mem_game/images/6D.png",
 			id: 6,
 		},
 		{
 			name: "7D",
-			img: "../memory_game_playing_cards/images/7D.png",
+			img: "../playing_cards_mem_game/images/7D.png",
 			id: 7,
 		},
 		{
 			name: "8D",
-			img: "../memory_game_playing_cards/images/8D.png",
+			img: "../playing_cards_mem_game/images/8D.png",
 			id: 8,
 		},
 		{
 			name: "9D",
-			img: "../memory_game_playing_cards/images/9D.png",
+			img: "../playing_cards_mem_game/images/9D.png",
 			id: 9,
 		},
 		{
 			name: "10D",
-			img: "../memory_game_playing_cards/images/10D.png",
+			img: "../playing_cards_mem_game/images/10D.png",
 			id: 10,
 		},
 		];

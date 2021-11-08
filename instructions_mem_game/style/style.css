@@ -46,7 +46,7 @@
 .green-title {
   width: 100%;
   text-align: center;
-  color: var(--dark-green);
+  color: var(--black);
 }
 #games_card .app-card {
   background-color: #e4d2ab;
