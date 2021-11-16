@@ -78,9 +78,12 @@ $(document).ready(function() {
 /*
 ----------------- GAME FUNCTION ------------------
 */
-(function(){
-	
+(function(){	
+	var ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110]; 
 	var Memory = {
+
+		//this.ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110]; 
+
 
 		init: function(cardsHeart,cardsDiamond){
 			this.$game = $(".game");
@@ -108,10 +111,6 @@ $(document).ready(function() {
 			this.$memoryCards = $(".card");
 			this.paused = false;
      		this.guess = null;
-     		this.ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110];
-     		console.log("ID Array: ");
-			var str1 = JSON.stringify(this.ids[6]);
-			console.log(str1);
 			this.binding();
 		},
 
@@ -119,11 +118,11 @@ $(document).ready(function() {
 			this.$memoryCards.on("click", this.cardClicked);
 			this.$restartButton.on("click", $.proxy(this.reset, this));
 
-			// console.log("TESTING1");
-			// var str1 = JSON.stringify(this.$memoryCards);
-			// console.log(str1);
-			// console.log("TESTING FINISHED1");
-			// this.link = $memoryCards.getElementById('6');
+			console.log("TESTING1");
+			var str1 = JSON.stringify(this.$memoryCards);
+			console.log(str1);
+			console.log("TESTING FINISHED1");
+			// this.link = this.$memoryCards.getElementById('6');
 			// link.click();
 
 		},
@@ -131,12 +130,13 @@ $(document).ready(function() {
 		cardClicked: function(){
 			var _ = Memory; //Why is this here...saving instance of game?
 			var $card = $(this);
-			// console.log("TESTING");
-			// var str1 = JSON.stringify($(this).attr("data-id"));
-			// console.log(str1);
-			// var str2 = JSON.stringify($(this));
-			// console.log("$card: " + str2);
-			// console.log("TESTING FINISHED");
+
+			console.log("TESTING");
+			var str1 = JSON.stringify($(this).attr("data-id"));
+			console.log("data-id: " + str1);
+			var str2 = JSON.stringify($(this));
+			console.log("$card: " + str2);
+			console.log("TESTING FINISHED");
 
 			//If game hasn't been won, it does not have a match, and it hasn't been picked
 			if(!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")){
@@ -152,14 +152,27 @@ $(document).ready(function() {
 					//the card is a match, add match attribute
 					$(".picked").addClass("matched");
 					
-					//Remove ids from array
-					//remove this id from the list of possible matches by removing the element of the array with splice
-					// this.ids.splice(ids.indexOf($(this).attr("data-id")), 1);
-					// len = this.ids.length;
+					// Remove ids from array
+					// remove this id from the list of possible matches by removing the element of the array with splice
+					console.log("Card 1: ");
+					var str1 = JSON.stringify(parseInt($(this).attr("data-id")));
+					console.log(str1);
+
+					ids.splice(ids.indexOf(parseInt($(this).attr("data-id"))), 1);
+					console.log("ID Array after splicing card 1: ");
+					var str2 = JSON.stringify(ids);
+					console.log(str2);
+
+					console.log("Card 2: ");
+					var str3 = JSON.stringify(_.guess);
+					console.log(str3);
+
+
+					ids.splice(ids.indexOf(_.guess), 1);
 					
-					// console.log("ID Array: ");
-					// var str1 = JSON.stringify(this.ids);
-					// console.log(str1);
+					console.log("ID Array after splicing card 2: ");
+					var str4 = JSON.stringify(ids);
+					console.log(str4);
 
 					//and reset guess to null
 					_.guess = null;
@@ -172,7 +185,37 @@ $(document).ready(function() {
 						$(".picked").removeClass("picked");
 						Memory.paused = false;
 					}, 600);
+
+
+					//$test = $('7').get(0);
+					// var element = document.getElementById("7");
 					
+					// var two = document.querySelector('[data-id="2"]');
+					// var str2 = JSON.stringify(two);
+					// console.log(str2);
+					// two.find(".inside").addClass("picked");
+
+					//$('.card[data-id="1"]').get(0).click();
+					var test = $('.card[data-id="1"]').get(0);
+					var str2 = JSON.stringify(test);
+					console.log(str2);
+
+
+					test.find(".inside").addClass("picked");
+
+					// var divs=document.getElementsByClassName("card");
+					// var str2 = JSON.stringify(divs);
+					// console.log(str2);
+					//var card1=divs.getAttribute('7');
+					// divs.data("2").find(".inside").addClass("picked");
+
+
+					// this.cardsArray.find(".inside").addClass("picked");
+					// var test = this.$memoryCards.find("7");
+					// var str2 = JSON.stringify(test);
+					// console.log(str2);
+					//card1.find(".inside").addClass("picked");
+
 
 					_.ariCardClicked();
 				}
@@ -182,29 +225,34 @@ $(document).ready(function() {
 				}
 			}
 		},
-		// pickCard: function(){
-		// 	if(this.ids[0] != null){
 
-		// 	}
-
-		// },
-
-		// ariCardClicked: function(match){
 		ariCardClicked: function(){
+
+			// $cardPicked = $('*[data-ID="22"]');
+			// $cardPicked.find(".inside").addClass("picked");
 
 
 			//Every 5 tries, selects a correct pair (use counter & reset to 0 when executes correct match)
 
 
+			//selects cards at random
+			// const randomCard1 = ids[Math.floor(Math.random() * ids.length)];
+			// const randomCard2 = ids[Math.floor(Math.random() * ids.length)];
+			// while(randomCard1 == randomCard2){
+			// 	randomCard2 = ids[Math.floor(Math.random() * ids.length)];
+			// }
+
 
 			//No match
 			// if(match == false){
 
-			// 	var $card1 = this.$memoryCards.getElementById('7');
-			// 	var $card2 = this.$memoryCards.getElementById('7');
+			// $('.manage_del_nb[data-id="1"]').get(0).click();
 
-			// 	$card1.find(".inside").addClass("picked");
-			// 	$card2.find(".inside").addClass("picked");
+			// var $card1 = this.$memoryCards.getElementById('7');
+			// var $card2 = this.$memoryCards.getElementById('7');
+
+			// $card1.find(".inside").addClass("picked");
+			// $card2.find(".inside").addClass("picked");
 
 
 
@@ -217,13 +265,6 @@ $(document).ready(function() {
 			// }
 
 			//Match (if counter == 3)
-
-
-			//remove this id from the list of possible matches by removing the element of the array with splice
-			//ids.splice(ids.indexOf($(this).attr("data-id")), 1);
-			
-
-
 			
 			// //If game hasn't been won, it does not have a match, and it hasn't been picked
 			// if(!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")){
