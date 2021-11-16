@@ -89,6 +89,12 @@ $(document).ready(function() {
 			this.$restartButton = $("button.restart");
 			this.cardsArray = $.merge(cardsHeart, cardsDiamond);
 			this.shuffleCards(this.cardsArray);
+
+			// this.ariTurn = false; //true = ARI's turn, false = user's turn
+			// this.numPairsARI = 0;
+			// this.numPairsUser = 0;
+			
+
 			this.setup();
 		},
 
@@ -102,42 +108,166 @@ $(document).ready(function() {
 			this.$memoryCards = $(".card");
 			this.paused = false;
      		this.guess = null;
+     		this.ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110];
+     		console.log("ID Array: ");
+			var str1 = JSON.stringify(this.ids[6]);
+			console.log(str1);
 			this.binding();
 		},
 
 		binding: function(){
 			this.$memoryCards.on("click", this.cardClicked);
 			this.$restartButton.on("click", $.proxy(this.reset, this));
+
+			// console.log("TESTING1");
+			// var str1 = JSON.stringify(this.$memoryCards);
+			// console.log(str1);
+			// console.log("TESTING FINISHED1");
+			// this.link = $memoryCards.getElementById('6');
+			// link.click();
+
 		},
 		// kinda messy but hey
 		cardClicked: function(){
-			var _ = Memory;
+			var _ = Memory; //Why is this here...saving instance of game?
 			var $card = $(this);
+			// console.log("TESTING");
+			// var str1 = JSON.stringify($(this).attr("data-id"));
+			// console.log(str1);
+			// var str2 = JSON.stringify($(this));
+			// console.log("$card: " + str2);
+			// console.log("TESTING FINISHED");
+
+			//If game hasn't been won, it does not have a match, and it hasn't been picked
 			if(!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")){
+				//add picked attribute to card
 				$card.find(".inside").addClass("picked");
+				//If guess hasn't been made yet
 				if(!_.guess){
-					_.guess = $(this).attr("data-id");
-				} else if(_.guess == $(this).attr("data-id") && !$(this).hasClass("picked")){
+					//add id to the guess variable
+					_.guess = parseInt($(this).attr("data-id")); //guess is now an int
+				} 
+				//If the id matches the guess's id and (the second card?) hasn't been picked yet
+				else if((_.guess == parseInt($(this).attr("data-id"))*11 || _.guess == parseInt($(this).attr("data-id"))/11 )&& !$(this).hasClass("picked")){
+					//the card is a match, add match attribute
 					$(".picked").addClass("matched");
+					
+					//Remove ids from array
+					//remove this id from the list of possible matches by removing the element of the array with splice
+					// this.ids.splice(ids.indexOf($(this).attr("data-id")), 1);
+					// len = this.ids.length;
+					
+					// console.log("ID Array: ");
+					// var str1 = JSON.stringify(this.ids);
+					// console.log(str1);
+
+					//and reset guess to null
 					_.guess = null;
-				} else {
+				} 
+				//Otherwise, cards are not a match, so reset & switch player's turn
+				else {
 					_.guess = null;
 					_.paused = true;
 					setTimeout(function(){
 						$(".picked").removeClass("picked");
 						Memory.paused = false;
 					}, 600);
+					
+
+					_.ariCardClicked();
 				}
+				//If all cards have been matched, execute win (show trophy page)
 				if($(".matched").length == $(".card").length){
 					_.win();
 				}
 			}
 		},
+		// pickCard: function(){
+		// 	if(this.ids[0] != null){
+
+		// 	}
+
+		// },
+
+		// ariCardClicked: function(match){
+		ariCardClicked: function(){
+
+
+			//Every 5 tries, selects a correct pair (use counter & reset to 0 when executes correct match)
+
+
+
+			//No match
+			// if(match == false){
+
+			// 	var $card1 = this.$memoryCards.getElementById('7');
+			// 	var $card2 = this.$memoryCards.getElementById('7');
+
+			// 	$card1.find(".inside").addClass("picked");
+			// 	$card2.find(".inside").addClass("picked");
+
+
+
+			// 	_.guess = null;
+			// 	_.paused = true;
+			// 	setTimeout(function(){
+			// 		$(".picked").removeClass("picked");
+			// 		Memory.paused = false;
+			// 	}, 600);
+			// }
+
+			//Match (if counter == 3)
+
+
+			//remove this id from the list of possible matches by removing the element of the array with splice
+			//ids.splice(ids.indexOf($(this).attr("data-id")), 1);
+			
+
+
+			
+			// //If game hasn't been won, it does not have a match, and it hasn't been picked
+			// if(!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")){
+			// 	//add picked attribute to card
+			// 	$card.find(".inside").addClass("picked");
+			// 	//If guess hasn't been made yet
+			// 	if(!_.guess){
+			// 		//add id to the guess variable
+			// 		_.guess = $(this).attr("data-id");
+			// 	} 
+			// 	//If the id matches the guess's id and (the second card?) hasn't been picked yet
+			// 	else if(_.guess == $(this).attr("data-id") && !$(this).hasClass("picked")){
+			// 		//the card is a match, add match attribute
+			// 		$(".picked").addClass("matched");
+					
+			// 		//remove this id from the list of possible matches by removing the element of the array with splice
+			// 		//ids.splice(ids.indexOf($(this).attr("data-id")), 1);
+
+			// 		//and reset guess to null
+			// 		_.guess = null;
+			// 	} 
+			// 	//Otherwise, cards are not a match, so reset & switch player's turn
+			// 	else {
+			// 		_.guess = null;
+			// 		_.paused = true;
+			// 		setTimeout(function(){
+			// 			$(".picked").removeClass("picked");
+			// 			Memory.paused = false;
+			// 		}, 600);
+
+			// 		// ariTurn = true;
+			// 		// _.ariCardClicked()
+			// 	}
+			// 	//If all cards have been matched, execute win (show trophy page)
+			// 	if($(".matched").length == $(".card").length){
+			// 		_.win();
+			// 	}
+			// }
+		},
 
 		win: function(){
 			this.paused = true;
 			setTimeout(function(){
-                                default_web.secondFrase();
+                default_web.secondFrase();
 				Memory.showModal();
 				Memory.$game.fadeOut();
 			}, 1000);
@@ -183,7 +313,7 @@ $(document).ready(function() {
 				frag += '<div class="card" data-id="'+ v.id +'"><div class="inside">\
 				<div class="front"><img src="'+ v.img +'"\
 				alt="'+ v.name +'" /></div>\
-				<div class="back"><img src="../ari_shapes_common/images/shapes_logo_memory_game.png"/></div></div>\
+				<div class="back"><img src="../common_mem_game/images/cards.svg"/></div></div>\
 				</div>';
 			});
 			return frag;
@@ -267,52 +397,52 @@ $(document).ready(function() {
 		{
 			name: "AD",
 			img: "../playing_cards_mem_game/images/AD.png",
-			id: 1,
+			id: 11,
 		},
 		{
 			name: "2D",
 			img: "../playing_cards_mem_game/images/2D.png",
-			id: 2,
+			id: 22,
 		},
 		{
 			name: "3D",
 			img: "../playing_cards_mem_game/images/3D.png",
-			id: 3,
+			id: 33,
 		},
 		{
 			name: "4D",
 			img: "../playing_cards_mem_game/images/4D.png",
-			id: 4,
+			id: 44,
 		},
 		{
 			name: "5D",
 			img: "../playing_cards_mem_game/images/5D.png",
-			id: 5,
+			id: 55,
 		},
 		{
 			name: "6D",
 			img: "../playing_cards_mem_game/images/6D.png",
-			id: 6,
+			id: 66,
 		},
 		{
 			name: "7D",
 			img: "../playing_cards_mem_game/images/7D.png",
-			id: 7,
+			id: 77,
 		},
 		{
 			name: "8D",
 			img: "../playing_cards_mem_game/images/8D.png",
-			id: 8,
+			id: 88,
 		},
 		{
 			name: "9D",
 			img: "../playing_cards_mem_game/images/9D.png",
-			id: 9,
+			id: 99,
 		},
 		{
 			name: "10D",
 			img: "../playing_cards_mem_game/images/10D.png",
-			id: 10,
+			id: 110,
 		},
 		];
 

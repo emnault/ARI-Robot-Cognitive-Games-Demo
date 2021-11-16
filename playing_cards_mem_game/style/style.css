@@ -39,8 +39,10 @@ body {
 }
 .card {
 	float: left;
-	width: 23%;
-	height: 18%;
+	/*width: 23%;
+	height: 18%;*/
+	width: 20%;
+	height: 25%; 	/*--- 4 rows 5 cols*/
 	padding: 5px;
 	text-align: center;
 	display: block;
@@ -91,7 +93,7 @@ body {
 	max-height: 100%;
 }
 .card .front img {
-	width: 100px;
+	width: 100px; /*100 changed to 50*/
 }
 .card .front {
 	transform: rotateY(-180deg);
