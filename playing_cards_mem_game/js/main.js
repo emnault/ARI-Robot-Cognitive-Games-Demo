@@ -192,7 +192,6 @@ $(document).ready(function() {
 					}
 					else{
 						_.ariCorrectPair();
-						ariMatch = 0;
 
 					}
 
@@ -221,7 +220,7 @@ $(document).ready(function() {
 			
 			//use loop to ensure two cards are not a match
 			while((ids[randIdx1] == ids[randIdx2]*11) || (ids[randIdx1] == ids[randIdx2]/11) || (ids[randIdx1] == ids[randIdx2])){
-				randIdx2 = getRandomIdx(ids.length);
+				randIdx2 = _.getRandomIdx(ids.length);
 			}
 
 			//Make string that looks like: '[data-id="2"]'
@@ -347,9 +346,16 @@ $(document).ready(function() {
 					var str4 = JSON.stringify(ids);
 					console.log(str4);
 
+
+					//ARI got a pair correct, so gets to try again, but will get it incorrect this time
+					_.sleep(1000).then(() => { 
+						ariMatch = 0;
+						_.ariIncorrectPair();
+					});
 				});
 
 			});
+
 		},
 
 		//Select random index given len of array
