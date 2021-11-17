@@ -81,6 +81,8 @@ $(document).ready(function() {
 (function(){	
 	var ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110]; 
 	var ariMatch = 0; //add until reach threshold, where ARI will pick a correct pair
+	var ariNumPairs = 0;
+	var userNumPairs = 0;
 	var Memory = {
 
 		//this.ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110]; 
@@ -175,6 +177,9 @@ $(document).ready(function() {
 					var str4 = JSON.stringify(ids);
 					console.log(str4);
 
+					//update user's score
+					userNumPairs++;
+
 					//and reset guess to null
 					_.guess = null;
 				} 
@@ -211,6 +216,13 @@ $(document).ready(function() {
 			var picked1;
 			var card2;
 			var picked2;
+
+			//If there's only one pair left, have ARI choose that pair (by executing correct pair method)
+			if(ids.length == 2){
+				console.log("FINAL PAIR - EXECUTING");
+				_.ariCorrectPair();
+				return;
+			}
 
 			//Every 3 tries, selects a correct pair (use counter & reset to 0 when executes correct match)
 
@@ -283,6 +295,9 @@ $(document).ready(function() {
 			var picked2;
 			var loop = true;
 
+			//ARI will select a correct pair, so update score:
+			ariNumPairs++;
+
 			//Every 3 tries, selects a correct pair (use counter & reset to 0 when executes correct match)
 
 			//Select random index given len of array
@@ -349,8 +364,16 @@ $(document).ready(function() {
 
 					//ARI got a pair correct, so gets to try again, but will get it incorrect this time
 					_.sleep(1000).then(() => { 
-						ariMatch = 0;
-						_.ariIncorrectPair();
+
+						//Just added this if/else, need to check if it works
+						if(ids.length == 0){
+							_.win();
+						}
+						else{
+							ariMatch = 0;
+							_.ariIncorrectPair();
+						}
+						
 					});
 				});
 
@@ -370,6 +393,13 @@ $(document).ready(function() {
 		win: function(){
 			this.paused = true;
 			setTimeout(function(){
+				console.log("ARI's Score: ");
+				var strARI = JSON.stringify(ariNumPairs);
+				console.log(strARI);
+				console.log("User's Score: ");
+				var strUser = JSON.stringify(userNumPairs);
+				console.log(strUser);
+
                 default_web.secondFrase();
 				Memory.showModal();
 				Memory.$game.fadeOut();
