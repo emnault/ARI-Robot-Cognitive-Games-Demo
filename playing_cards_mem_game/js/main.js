@@ -154,25 +154,25 @@ $(document).ready(function() {
 					
 					// Remove ids from array
 					// remove this id from the list of possible matches by removing the element of the array with splice
-					console.log("Card 1: ");
-					var str1 = JSON.stringify(parseInt($(this).attr("data-id")));
-					console.log(str1);
+					// console.log("Card 1: ");
+					// var str1 = JSON.stringify(parseInt($(this).attr("data-id")));
+					// console.log(str1);
 
 					ids.splice(ids.indexOf(parseInt($(this).attr("data-id"))), 1);
-					console.log("ID Array after splicing card 1: ");
-					var str2 = JSON.stringify(ids);
-					console.log(str2);
+					// console.log("ID Array after splicing card 1: ");
+					// var str2 = JSON.stringify(ids);
+					// console.log(str2);
 
-					console.log("Card 2: ");
-					var str3 = JSON.stringify(_.guess);
-					console.log(str3);
+					// console.log("Card 2: ");
+					// var str3 = JSON.stringify(_.guess);
+					// console.log(str3);
 
 
 					ids.splice(ids.indexOf(_.guess), 1);
 					
-					console.log("ID Array after splicing card 2: ");
-					var str4 = JSON.stringify(ids);
-					console.log(str4);
+					// console.log("ID Array after splicing card 2: ");
+					// var str4 = JSON.stringify(ids);
+					// console.log(str4);
 
 					//and reset guess to null
 					_.guess = null;
@@ -184,7 +184,11 @@ $(document).ready(function() {
 					setTimeout(function(){
 						$(".picked").removeClass("picked");
 						Memory.paused = false;
+						console.log("CARDS NOT MATCH, TIMEOUT");
 					}, 600);
+
+
+					// this.$memoryCards.
 
 
 					//$test = $('7').get(0);
@@ -196,12 +200,12 @@ $(document).ready(function() {
 					// two.find(".inside").addClass("picked");
 
 					//$('.card[data-id="1"]').get(0).click();
-					var test = $('.card[data-id="1"]').get(0);
-					var str2 = JSON.stringify(test);
-					console.log(str2);
+					// var test = $('.card[data-id="1"]').get(0);
+					// var str2 = JSON.stringify(test);
+					// console.log(str2);
 
 
-					test.find(".inside").addClass("picked");
+					// test.find(".inside").addClass("picked");
 
 					// var divs=document.getElementsByClassName("card");
 					// var str2 = JSON.stringify(divs);
@@ -228,8 +232,40 @@ $(document).ready(function() {
 
 		ariCardClicked: function(){
 
-			// $cardPicked = $('*[data-ID="22"]');
-			// $cardPicked.find(".inside").addClass("picked");
+			// var result = this.$cards.find(obj => {
+			// 			return obj.data-id == 6
+			// 		})
+
+			// var result = document.querySelectorAll("[data-id='1']");
+
+			var result1 = $('[data-id="2"]');
+
+			var result = $('[data-id="22"]');
+
+			
+			
+			var str2 = JSON.stringify(result);
+			console.log ("result: ");
+			console.log (str2);
+			var str3 = JSON.stringify(result1);
+			console.log ("result1: ");
+			console.log (str3);
+
+
+			var result2 = result.find(".inside").addClass("picked");
+			var result3 = result1.find(".inside").addClass("picked");
+
+			console.log ("PICKED");
+
+			result2.addClass("matched");
+			result3.addClass("matched");
+			// $(".picked").addClass("matched");
+
+			
+			console.log ("Getting thorugh code");
+
+
+			
 
 
 			//Every 5 tries, selects a correct pair (use counter & reset to 0 when executes correct match)
