@@ -80,6 +80,7 @@ $(document).ready(function() {
 */
 (function(){	
 	var ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110]; 
+	var ariMatch = 0; //add until reach threshold, where ARI will pick a correct pair
 	var Memory = {
 
 		//this.ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110]; 
@@ -170,9 +171,9 @@ $(document).ready(function() {
 
 					ids.splice(ids.indexOf(_.guess), 1);
 					
-					// console.log("ID Array after splicing card 2: ");
-					// var str4 = JSON.stringify(ids);
-					// console.log(str4);
+					console.log("ID Array after splicing card 2: ");
+					var str4 = JSON.stringify(ids);
+					console.log(str4);
 
 					//and reset guess to null
 					_.guess = null;
@@ -186,7 +187,16 @@ $(document).ready(function() {
 						Memory.paused = false;
 					}, 600);
 
-					_.ariCardClicked();
+					if(ariMatch < 3){
+						_.ariIncorrectPair();
+					}
+					else{
+						_.ariCorrectPair();
+						ariMatch = 0;
+
+					}
+
+					
 				}
 				//If all cards have been matched, execute win (show trophy page)
 				if($(".matched").length == $(".card").length){
@@ -195,7 +205,7 @@ $(document).ready(function() {
 			}
 		},
 
-		ariCardClicked: function(){
+		ariIncorrectPair: function(){
 
 			var _ = Memory;
 			var card1;
@@ -203,40 +213,126 @@ $(document).ready(function() {
 			var card2;
 			var picked2;
 
-			// _.paused = true;
-			// setTimeout(function(){
-			// 			//$(".picked").removeClass("picked");
-			// 			card1 = $('[data-id="2"]');
-			// 			picked1 = card1.find(".inside").addClass("picked");
-			// 			Memory.paused = false;
-			// 			console.log("CARD 1 flipped");
-			// 		}, 600);
+			//Every 3 tries, selects a correct pair (use counter & reset to 0 when executes correct match)
 
-			// setTimeout(function(){
-			// 			//$(".picked").removeClass("picked");
-						
-			// 			Memory.paused = false;
-			// 			console.log("CARD 2 flipped");
-			// 		}, 600);
-
+			//Select random index given len of array
+			var randIdx1 = _.getRandomIdx(ids.length);
+			var randIdx2 = _.getRandomIdx(ids.length);
 			
+			//use loop to ensure two cards are not a match
+			while((ids[randIdx1] == ids[randIdx2]*11) || (ids[randIdx1] == ids[randIdx2]/11) || (ids[randIdx1] == ids[randIdx2])){
+				randIdx2 = getRandomIdx(ids.length);
+			}
 
-			// function sleep(ms) {
-  	// 			return new Promise(resolve => setTimeout(resolve, ms));
-			// }
+			//Make string that looks like: '[data-id="2"]'
+			let startStr = '[data-id="';
+			let endStr = '"]';
+			var card1ToStr = ids[randIdx1].toString();
+			var card2ToStr = ids[randIdx2].toString();
 
+			var cardOneStr = startStr.concat(card1ToStr, endStr);
+			var cardTwoStr = startStr.concat(card2ToStr, endStr);
+
+			// var card1Str = '[data-id="' + ids[randIdx1].toString(); + '"]';
+			// var card2Str = '[data-id="' + ids[randIdx2].toString(); + '"]';
+
+			console.log("card1Str: ");
+			console.log(cardOneStr);
+			console.log("card2Str: ");
+			console.log(cardTwoStr);
+
+
+
+			//When card is match
+			// console.log("SLEEPING1");
+			_.sleep(1000).then(() => { 
+
+				// console.log("FINISHED SLEEPING1!");
+				card1 = $(cardOneStr);
+				picked1 = card1.find(".inside").addClass("picked");
+				// console.log("CARD 1 flipped");
+
+				_.sleep(1000).then(() => { 
+
+					// console.log("FINISHED SLEEPING2!");
+					card2 = $(cardTwoStr);
+					picked2 = card2.find(".inside").addClass("picked");
+					// console.log("CARD 2 flipped");
+
+					// picked1.addClass("matched");
+					// picked2.addClass("matched");
+					// console.log("MATCHED");
+					_.sleep(1000).then(() => { 
+						picked1.removeClass("picked");
+						picked2.removeClass("picked");
+						console.log("REMOVED PICK");
+					});
+
+				});
+
+			});
+
+			ariMatch ++;
+			
+		},
+
+		ariCorrectPair: function(){
+			var _ = Memory;
+			var card1;
+			var picked1;
+			var card2;
+			var picked2;
+			var loop = true;
+
+			//Every 3 tries, selects a correct pair (use counter & reset to 0 when executes correct match)
+
+			//Select random index given len of array
+			var randIdx1 = _.getRandomIdx(ids.length);
+			var randIdx2 = _.getRandomIdx(ids.length);
+			
+			//use loop to ensure two cards are not a match
+			while(loop){
+				if((ids[randIdx1] == ids[randIdx2]*11) || (ids[randIdx1] == ids[randIdx2]/11)){
+					loop = false;
+				}
+				else{
+					randIdx2 = _.getRandomIdx(ids.length);
+				}
+				
+			}
+
+			//Make string that looks like: '[data-id="2"]'
+			let startStr = '[data-id="';
+			let endStr = '"]';
+			var card1ToStr = ids[randIdx1].toString();
+			var card2ToStr = ids[randIdx2].toString();
+
+			var cardOneStr = startStr.concat(card1ToStr, endStr);
+			var cardTwoStr = startStr.concat(card2ToStr, endStr);
+
+			// var card1Str = '[data-id="' + ids[randIdx1].toString(); + '"]';
+			// var card2Str = '[data-id="' + ids[randIdx2].toString(); + '"]';
+
+			console.log("card1Str: ");
+			console.log(cardOneStr);
+			console.log("card2Str: ");
+			console.log(cardTwoStr);
+
+
+
+			//When card is match
 			console.log("SLEEPING1");
-			_.sleepTwo(1000).then(() => { 
+			_.sleep(1000).then(() => { 
 
 				console.log("FINISHED SLEEPING1!");
-				card1 = $('[data-id="2"]');
+				card1 = $(cardOneStr);
 				picked1 = card1.find(".inside").addClass("picked");
 				console.log("CARD 1 flipped");
 
-				_.sleepTwo(1000).then(() => { 
+				_.sleep(1000).then(() => { 
 
 					console.log("FINISHED SLEEPING2!");
-					card2 = $('[data-id="22"]');
+					card2 = $(cardTwoStr);
 					picked2 = card2.find(".inside").addClass("picked");
 					console.log("CARD 2 flipped");
 
@@ -244,77 +340,24 @@ $(document).ready(function() {
 					picked2.addClass("matched");
 					console.log("MATCHED");
 
+					ids.splice(ids.indexOf(parseInt(card1.attr("data-id"))), 1);
+					ids.splice(ids.indexOf(parseInt(card2.attr("data-id"))), 1);
+					
+					console.log("ID Array after splicing: ");
+					var str4 = JSON.stringify(ids);
+					console.log(str4);
+
 				});
 
 			});
-
-			// console.log("SLEEPING2");
-			
-
-			// console.log("SLEEPING MATCHING");
-			
-
-			
-			// _.sleep(1000);
-			// _.sleepTwo(1000).then(() => { console.log("FINISHED SLEEPING!"); });
-
-			// function sleep(ms) {
-			// 	return new Promise(resolve => setTimeout(resolve, ms));
-			// }
-
-			// async function delayedGreeting() {
-			// 	console.log("Hello");
-			// 	await sleep(2000);
-			// 	console.log("World!");
-			// 	await sleep(2000);
-			// 	console.log("Goodbye!");
-			// }
-
-			// delayedGreeting();
-
-
-			
-
-
-			
-			// $(".picked").addClass("matched");
-
-			
-			console.log ("Cards matched");
-
-			//Every 5 tries, selects a correct pair (use counter & reset to 0 when executes correct match)
-
-			//selects cards at random
-			// const randomCard1 = ids[Math.floor(Math.random() * ids.length)];
-			// const randomCard2 = ids[Math.floor(Math.random() * ids.length)];
-			// while(randomCard1 == randomCard2){
-			// 	randomCard2 = ids[Math.floor(Math.random() * ids.length)];
-			// }
-
-			//No match
-			// if(match == false){
-
-			// 	_.guess = null;
-			// 	_.paused = true;
-			// 	setTimeout(function(){
-			// 		$(".picked").removeClass("picked");
-			// 		Memory.paused = false;
-			// 	}, 600);
-			// }
-
-			//Match (if counter == 3)
-			
 		},
 
-		sleep: function(milliseconds){
-			const date = Date.now();
-			  let currentDate = null;
-			  do {
-			    currentDate = Date.now();
-			  } while (currentDate - date < milliseconds);
+		//Select random index given len of array
+		getRandomIdx: function (max) {
+			return Math.floor(Math.random() * max);
 		},
 
-		sleepTwo: function(ms) {
+		sleep: function(ms) {
 			return new Promise(resolve => setTimeout(resolve, ms));
 		},
 
@@ -347,18 +390,18 @@ $(document).ready(function() {
 		// Fisher--Yates Algorithm -- https://bost.ocks.org/mike/shuffle/
 		shuffle: function(array){
 			var counter = array.length, temp, index;
-	   	// While there are elements in the array
-	   	while (counter > 0) {
-        	// Pick a random index
-        	index = Math.floor(Math.random() * counter);
-        	// Decrease counter by 1
-        	counter--;
-        	// And swap the last element with it
-        	temp = array[counter];
-        	array[counter] = array[index];
-        	array[index] = temp;
-	    	}
-	    	return array;
+		   	// While there are elements in the array
+		   	while (counter > 0) {
+	        	// Pick a random index
+	        	index = Math.floor(Math.random() * counter);
+	        	// Decrease counter by 1
+	        	counter--;
+	        	// And swap the last element with it
+	        	temp = array[counter];
+	        	array[counter] = array[index];
+	        	array[index] = temp;
+		    	}
+		    	return array;
 		},
 
 		buildHTML: function(){
