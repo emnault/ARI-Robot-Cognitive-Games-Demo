@@ -184,42 +184,7 @@ $(document).ready(function() {
 					setTimeout(function(){
 						$(".picked").removeClass("picked");
 						Memory.paused = false;
-						console.log("CARDS NOT MATCH, TIMEOUT");
 					}, 600);
-
-
-					// this.$memoryCards.
-
-
-					//$test = $('7').get(0);
-					// var element = document.getElementById("7");
-					
-					// var two = document.querySelector('[data-id="2"]');
-					// var str2 = JSON.stringify(two);
-					// console.log(str2);
-					// two.find(".inside").addClass("picked");
-
-					//$('.card[data-id="1"]').get(0).click();
-					// var test = $('.card[data-id="1"]').get(0);
-					// var str2 = JSON.stringify(test);
-					// console.log(str2);
-
-
-					// test.find(".inside").addClass("picked");
-
-					// var divs=document.getElementsByClassName("card");
-					// var str2 = JSON.stringify(divs);
-					// console.log(str2);
-					//var card1=divs.getAttribute('7');
-					// divs.data("2").find(".inside").addClass("picked");
-
-
-					// this.cardsArray.find(".inside").addClass("picked");
-					// var test = this.$memoryCards.find("7");
-					// var str2 = JSON.stringify(test);
-					// console.log(str2);
-					//card1.find(".inside").addClass("picked");
-
 
 					_.ariCardClicked();
 				}
@@ -232,44 +197,92 @@ $(document).ready(function() {
 
 		ariCardClicked: function(){
 
-			// var result = this.$cards.find(obj => {
-			// 			return obj.data-id == 6
-			// 		})
+			var _ = Memory;
+			var card1;
+			var picked1;
+			var card2;
+			var picked2;
 
-			// var result = document.querySelectorAll("[data-id='1']");
+			// _.paused = true;
+			// setTimeout(function(){
+			// 			//$(".picked").removeClass("picked");
+			// 			card1 = $('[data-id="2"]');
+			// 			picked1 = card1.find(".inside").addClass("picked");
+			// 			Memory.paused = false;
+			// 			console.log("CARD 1 flipped");
+			// 		}, 600);
 
-			var result1 = $('[data-id="2"]');
-
-			var result = $('[data-id="22"]');
+			// setTimeout(function(){
+			// 			//$(".picked").removeClass("picked");
+						
+			// 			Memory.paused = false;
+			// 			console.log("CARD 2 flipped");
+			// 		}, 600);
 
 			
+
+			// function sleep(ms) {
+  	// 			return new Promise(resolve => setTimeout(resolve, ms));
+			// }
+
+			console.log("SLEEPING1");
+			_.sleepTwo(1000).then(() => { 
+
+				console.log("FINISHED SLEEPING1!");
+				card1 = $('[data-id="2"]');
+				picked1 = card1.find(".inside").addClass("picked");
+				console.log("CARD 1 flipped");
+
+				_.sleepTwo(1000).then(() => { 
+
+					console.log("FINISHED SLEEPING2!");
+					card2 = $('[data-id="22"]');
+					picked2 = card2.find(".inside").addClass("picked");
+					console.log("CARD 2 flipped");
+
+					picked1.addClass("matched");
+					picked2.addClass("matched");
+					console.log("MATCHED");
+
+				});
+
+			});
+
+			// console.log("SLEEPING2");
 			
-			var str2 = JSON.stringify(result);
-			console.log ("result: ");
-			console.log (str2);
-			var str3 = JSON.stringify(result1);
-			console.log ("result1: ");
-			console.log (str3);
+
+			// console.log("SLEEPING MATCHING");
+			
+
+			
+			// _.sleep(1000);
+			// _.sleepTwo(1000).then(() => { console.log("FINISHED SLEEPING!"); });
+
+			// function sleep(ms) {
+			// 	return new Promise(resolve => setTimeout(resolve, ms));
+			// }
+
+			// async function delayedGreeting() {
+			// 	console.log("Hello");
+			// 	await sleep(2000);
+			// 	console.log("World!");
+			// 	await sleep(2000);
+			// 	console.log("Goodbye!");
+			// }
+
+			// delayedGreeting();
 
 
-			var result2 = result.find(".inside").addClass("picked");
-			var result3 = result1.find(".inside").addClass("picked");
+			
 
-			console.log ("PICKED");
 
-			result2.addClass("matched");
-			result3.addClass("matched");
+			
 			// $(".picked").addClass("matched");
 
 			
-			console.log ("Getting thorugh code");
-
-
-			
-
+			console.log ("Cards matched");
 
 			//Every 5 tries, selects a correct pair (use counter & reset to 0 when executes correct match)
-
 
 			//selects cards at random
 			// const randomCard1 = ids[Math.floor(Math.random() * ids.length)];
@@ -278,19 +291,8 @@ $(document).ready(function() {
 			// 	randomCard2 = ids[Math.floor(Math.random() * ids.length)];
 			// }
 
-
 			//No match
 			// if(match == false){
-
-			// $('.manage_del_nb[data-id="1"]').get(0).click();
-
-			// var $card1 = this.$memoryCards.getElementById('7');
-			// var $card2 = this.$memoryCards.getElementById('7');
-
-			// $card1.find(".inside").addClass("picked");
-			// $card2.find(".inside").addClass("picked");
-
-
 
 			// 	_.guess = null;
 			// 	_.paused = true;
@@ -302,43 +304,18 @@ $(document).ready(function() {
 
 			//Match (if counter == 3)
 			
-			// //If game hasn't been won, it does not have a match, and it hasn't been picked
-			// if(!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")){
-			// 	//add picked attribute to card
-			// 	$card.find(".inside").addClass("picked");
-			// 	//If guess hasn't been made yet
-			// 	if(!_.guess){
-			// 		//add id to the guess variable
-			// 		_.guess = $(this).attr("data-id");
-			// 	} 
-			// 	//If the id matches the guess's id and (the second card?) hasn't been picked yet
-			// 	else if(_.guess == $(this).attr("data-id") && !$(this).hasClass("picked")){
-			// 		//the card is a match, add match attribute
-			// 		$(".picked").addClass("matched");
-					
-			// 		//remove this id from the list of possible matches by removing the element of the array with splice
-			// 		//ids.splice(ids.indexOf($(this).attr("data-id")), 1);
+		},
 
-			// 		//and reset guess to null
-			// 		_.guess = null;
-			// 	} 
-			// 	//Otherwise, cards are not a match, so reset & switch player's turn
-			// 	else {
-			// 		_.guess = null;
-			// 		_.paused = true;
-			// 		setTimeout(function(){
-			// 			$(".picked").removeClass("picked");
-			// 			Memory.paused = false;
-			// 		}, 600);
+		sleep: function(milliseconds){
+			const date = Date.now();
+			  let currentDate = null;
+			  do {
+			    currentDate = Date.now();
+			  } while (currentDate - date < milliseconds);
+		},
 
-			// 		// ariTurn = true;
-			// 		// _.ariCardClicked()
-			// 	}
-			// 	//If all cards have been matched, execute win (show trophy page)
-			// 	if($(".matched").length == $(".card").length){
-			// 		_.win();
-			// 	}
-			// }
+		sleepTwo: function(ms) {
+			return new Promise(resolve => setTimeout(resolve, ms));
 		},
 
 		win: function(){
