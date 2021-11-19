@@ -1,4 +1,6 @@
 import * as RRLIB from '../../js/modules/rrlib.js'
+// import { ariNumPairs } from '../../playing_cards_mem_game/js/main.js'
+
 
 
 // RRLIB speech for the games
@@ -25,7 +27,7 @@ class DefaultWeb {
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "I am going to shuffle a deck of twenty red playing cards, Ace through ten, and place the cards face on my tablet in four rows. <mark name='doTrick trickName=alive_1'/>  We will then take turns to turn over any two of these cards. We will flip them back over in exactly the same place we took them from, unless they are a pair. For example, both are queens or number fives, in which case they are placed next to the person that chose them. If a person finds a pair, then that same player has another turn. If the cards are not a pair, then the other player takes a turn. We will continue to do this until the whole deck has been turned over. <mark name='doTrick trickName=nod'/>. Try to remember where cards are. You should improve with practice. The winner is the player with the most cards at the end of the game. ",
+                text: "Use the following rating scale to rate how well you did.", 
                 lang_id: "en_GB"
             }
         }, (response) => {
@@ -39,11 +41,76 @@ let default_web = new DefaultWeb();
 $(document).ready(function() {
 //  shapes_demo.init();
   default_web.firstFrase();
+
+  // var uppercaseModule = require('../../playing_cards_mem_game/js/main.js')
+  // var {ariNumPairs, userNumPairs} = require('../../playing_cards_mem_game/js/main.js')
+
+  console.log("Getting ari score");
+  // var stringARIScore = window.ariNumPairs.toString();
+  // alert (window.ariNumPairs);
+  // window.onload = alert(localStorage.getItem("storageName"));
+
+  alert(localStorage.getItem('ariNumPairs'));
+
+  alert(localStorage.getItem('userNumPairs'));
+
+
+  console.log("Alert - ari score thrown");
+
+  
+
+
+
   // Add event listeners
   $("#next").on("touchend", function(){
    // parent.switchConfig("memory_game");
-   window.open("../playing_cards_mem_game/index.html", "_self");
-  }); //////^^^TO BECOME FEEDBACK PAGE^^^^
+   //window.open("../playing_cards_mem_game/index.html", "_self");
+
+
+   /*
+----------------- POP-UP FUNCTION ------------------
+  */
+   (function(){  
+ 
+
+    var Memory = {
+
+
+      init: function(){
+        this.$modal = $(".modal");
+        this.$overlay = $(".modal-overlay");
+        this.win();
+      },
+
+
+      win: function(){
+        setTimeout(function(){
+          //default_web.secondFrase();
+          Memory.showModal();
+          //Memory.$game.fadeOut();
+        }, 1000);
+      },
+
+      showModal: function(){
+        console.log("IN SHOW MODAL");
+        this.$overlay.show();
+        this.$modal.fadeIn("slow");
+      },
+
+      hideModal: function(){
+        this.$overlay.hide();
+        this.$modal.hide();
+      }
+
+    }; //close of Memory variable
+
+    Memory.init();
+
+  })();
+
+
+  }); 
+
   $("#back").on("touchend", function(){
    // parent.switchConfig("memory_game");
    window.open("../playing_cards_mem_game/index.html", "_self");

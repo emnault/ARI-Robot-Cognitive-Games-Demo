@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pre-Ratings</title>
+	<title>Post-Ratings</title>
 	<link rel="icon" type="image/png" href="../common_mem_game/images/favicon-pal.png">
 	<!-- common -->
 	<link rel="stylesheet" href="../common_mem_game/style/Montserrat.css"> 
@@ -32,11 +32,11 @@
 				</div> -->
 			<!-- </div> -->
 			<div class="radio-msg">
-			<input type="radio" name="pre_rating" value="Five"style="height:30px; width:30px; vertical-align: middle;">5 - I collected more than 5 pairs.<p>
-			<input type="radio" name="pre_rating" value="Four"style="height:30px; width:30px; vertical-align: middle;">4 - I collected 4-5 pairs.<p>
-			<input type="radio" name="pre_rating" value="Three"style="height:30px; width:30px; vertical-align: middle;">3 - I collected 2-4 pairs.<p>
-			<input type="radio" name="pre_rating" value="Two"style="height:30px; width:30px; vertical-align: middle;">2 - I collected 1-2 pairs.<p>
-			<input type="radio" name="pre_rating" value="One"style="height:30px; width:30px; vertical-align: middle;">1 - I collected no pairs.<p></div>
+			<input type="radio" name="post_rating" value="Five"style="height:30px; width:30px; vertical-align: middle;">5 - I collected more than 5 pairs.<p>
+			<input type="radio" name="post_rating" value="Four"style="height:30px; width:30px; vertical-align: middle;">4 - I collected 4-5 pairs.<p>
+			<input type="radio" name="post_rating" value="Three"style="height:30px; width:30px; vertical-align: middle;">3 - I collected 2-4 pairs.<p>
+			<input type="radio" name="post_rating" value="Two"style="height:30px; width:30px; vertical-align: middle;">2 - I collected 1-2 pairs.<p>
+			<input type="radio" name="post_rating" value="One"style="height:30px; width:30px; vertical-align: middle;">1 - I collected no pairs.<p></div>
 				<div class="bottom-btns">
 				<div class="big-green-btn" id="back">BACK</div>
 				<div class="big-green-btn" id="next">NEXT</div>
@@ -44,5 +44,17 @@
 			</div>
 		</div>
 	</div>
+	<div class="wrap">
+		<div class="modal-overlay">
+			<div class="modal">
+				<h2 class="winner">Very well!</h2>
+				<img src="../common_mem_game/images/trophy.svg">
+				<div class="text-msg"> You: 6 pairs</div>
+				<div class="text-msg"> ARI's: 5 pairs</div>
+				<button class="restart">FINISH</button>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

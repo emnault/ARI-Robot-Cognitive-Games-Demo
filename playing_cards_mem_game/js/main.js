@@ -25,7 +25,7 @@ class DefaultWeb {
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "I am going to shuffle a deck of twenty red playing cards, Ace through ten, and place the cards face on my tablet in four rows. <mark name='doTrick trickName=alive_1'/>  We will then take turns to turn over any two of these cards. We will flip them back over in exactly the same place we took them from, unless they are a pair. For example, both are queens or number fives, in which case they are placed next to the person that chose them. If a person finds a pair, then that same player has another turn. If the cards are not a pair, then the other player takes a turn. We will continue to do this until the whole deck has been turned over. <mark name='doTrick trickName=nod'/>. Try to remember where cards are. You should improve with practice. The winner is the player with the most cards at the end of the game. ",
+                text: "Card Matching Game",
                 lang_id: "en_GB"
             }
         }, (response) => {
@@ -59,6 +59,15 @@ class DefaultWeb {
 }
 
 let default_web = new DefaultWeb();
+window.ariNumPairs = 0;
+window.userNumPairs = 0;
+
+// window.onload = function() {
+//     var getInput = prompt("Hey type something here: ");
+//     localStorage.setItem("storageName",getInput);
+// }
+
+
 
 
 
@@ -81,8 +90,16 @@ $(document).ready(function() {
 (function(){	
 	var ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110]; 
 	var ariMatch = 0; //add until reach threshold, where ARI will pick a correct pair
-	var ariNumPairs = 0;
-	var userNumPairs = 0;
+	// exports.uppercase = (str) => str.toUpperCase()
+
+
+	// exports.ariNumPairs = 0;
+	// exports.userNumPairs = 0;
+
+	// var ariNumPairs = 0;
+	// var userNumPairs = 0;
+	// export { ariNumPairs };
+	
 	var Memory = {
 
 		//this.ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110]; 
@@ -94,13 +111,7 @@ $(document).ready(function() {
 			this.$overlay = $(".modal-overlay");
 			this.$restartButton = $("button.restart");
 			this.cardsArray = $.merge(cardsHeart, cardsDiamond);
-			this.shuffleCards(this.cardsArray);
-
-			// this.ariTurn = false; //true = ARI's turn, false = user's turn
-			// this.numPairsARI = 0;
-			// this.numPairsUser = 0;
-			
-
+			this.shuffleCards(this.cardsArray);			
 			this.setup();
 		},
 
@@ -125,6 +136,7 @@ $(document).ready(function() {
 			var str1 = JSON.stringify(this.$memoryCards);
 			console.log(str1);
 			console.log("TESTING FINISHED1");
+
 			// this.link = this.$memoryCards.getElementById('6');
 			// link.click();
 
@@ -178,7 +190,7 @@ $(document).ready(function() {
 					console.log(str4);
 
 					//update user's score
-					userNumPairs++;
+					window.userNumPairs++;
 
 					//and reset guess to null
 					_.guess = null;
@@ -296,7 +308,7 @@ $(document).ready(function() {
 			var loop = true;
 
 			//ARI will select a correct pair, so update score:
-			ariNumPairs++;
+			window.ariNumPairs++;
 
 			//Every 3 tries, selects a correct pair (use counter & reset to 0 when executes correct match)
 
@@ -394,15 +406,18 @@ $(document).ready(function() {
 			this.paused = true;
 			setTimeout(function(){
 				console.log("ARI's Score: ");
-				var strARI = JSON.stringify(ariNumPairs);
+				var strARI = JSON.stringify(window.ariNumPairs);
 				console.log(strARI);
 				console.log("User's Score: ");
-				var strUser = JSON.stringify(userNumPairs);
+				var strUser = JSON.stringify(window.userNumPairs);
 				console.log(strUser);
 
+				localStorage.setItem('ariNumPairs', ariNumPairs);
+				localStorage.setItem('userNumPairs', userNumPairs);
+
                 default_web.secondFrase();
-				Memory.showModal();
-				Memory.$game.fadeOut();
+				// Memory.showModal();
+				// Memory.$game.fadeOut();
 			}, 1000);
 		},
 
