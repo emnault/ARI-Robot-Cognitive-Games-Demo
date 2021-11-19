@@ -412,6 +412,7 @@ $(document).ready(function() {
 				var strUser = JSON.stringify(window.userNumPairs);
 				console.log(strUser);
 
+				localStorage.clear();
 				localStorage.setItem('ariNumPairs', ariNumPairs);
 				localStorage.setItem('userNumPairs', userNumPairs);
 

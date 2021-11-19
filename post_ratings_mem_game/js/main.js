@@ -45,20 +45,21 @@ $(document).ready(function() {
   // var uppercaseModule = require('../../playing_cards_mem_game/js/main.js')
   // var {ariNumPairs, userNumPairs} = require('../../playing_cards_mem_game/js/main.js')
 
-  console.log("Getting ari score");
+  // console.log("Getting ari score");
   // var stringARIScore = window.ariNumPairs.toString();
   // alert (window.ariNumPairs);
   // window.onload = alert(localStorage.getItem("storageName"));
 
-  alert(localStorage.getItem('ariNumPairs'));
+  // alert(localStorage.getItem('ariNumPairs'));
 
-  alert(localStorage.getItem('userNumPairs'));
+  // alert(localStorage.getItem('userNumPairs'));
 
 
-  console.log("Alert - ari score thrown");
+  // console.log("Alert - ari score thrown");
 
   
-
+  document.getElementById("user-score").innerHTML = "You: " + localStorage.getItem('userNumPairs') + " pairs.";
+  document.getElementById("ari-score").innerHTML = "ARI: " + localStorage.getItem('ariNumPairs') + " pairs.";
 
 
   // Add event listeners
@@ -75,6 +76,7 @@ $(document).ready(function() {
 
     var Memory = {
 
+      
 
       init: function(){
         this.$modal = $(".modal");
@@ -95,6 +97,7 @@ $(document).ready(function() {
         console.log("IN SHOW MODAL");
         this.$overlay.show();
         this.$modal.fadeIn("slow");
+        localStorage.clear();
       },
 
       hideModal: function(){
