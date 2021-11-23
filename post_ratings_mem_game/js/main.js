@@ -27,7 +27,19 @@ class DefaultWeb {
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "Use the following rating scale to rate how well you did.", 
+                text: "<mark name='doTrick trickName=show_right'/>Use the following rating scale to rate how well you did.", 
+                lang_id: "en_GB"
+            }
+        }, (response) => {
+            goal_id = response.goal_id;
+        });
+    }
+    secondFrase() {
+        let goal_id = '';                       
+        // Respond
+        this.tts_action.sendGoal({
+            rawtext: {
+                text: "<mark name='doTrick trickName=bow'/>Great game! I enjoyed playing with you, and I hope you had fun too!", 
                 lang_id: "en_GB"
             }
         }, (response) => {
@@ -95,6 +107,7 @@ $(document).ready(function() {
 
       showModal: function(){
         console.log("IN SHOW MODAL");
+        default_web.secondFrase();
         this.$overlay.show();
         this.$modal.fadeIn("slow");
         localStorage.clear();

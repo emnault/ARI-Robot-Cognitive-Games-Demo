@@ -25,7 +25,7 @@ class DefaultWeb {
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "Card Matching Game",
+                text: "Let's begin! You go first.",
                 lang_id: "en_GB"
             }
         }, (response) => {
@@ -37,7 +37,7 @@ class DefaultWeb {
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "Great!<mark name='doTrick trickName=nod'/> you've done very well<break time='500ms'/>",
+                text: "<break time='500ms'/><mark name='doTrick trickName=nod'/> Yes!", //<break time='500ms'/>
                 lang_id: "en_GB"
             }
         }, (response) => {
@@ -49,12 +49,26 @@ class DefaultWeb {
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "You are great! <mark name='doTrick trickName=bow'/> I love playing with you!",
+                text: "<mark name='doTrick trickName=alive_1'/>Nice one.",
                 lang_id: "en_GB"
             }
         }, (response) => {
             goal_id = response.goal_id;
         });
+
+    }
+    winFrase() {
+        let goal_id = '';                       
+        // Respond
+        this.tts_action.sendGoal({
+            rawtext: {
+                text: "<mark name='doTrick trickName=alive_5'/> We have completed the deck! <mark name='doTrick trickName=alive_6'/> Press next to continue.",
+                lang_id: "en_GB"
+            }
+        }, (response) => {
+            goal_id = response.goal_id;
+        });
+        
     }
 }
 
@@ -90,6 +104,8 @@ $(document).ready(function() {
 (function(){	
 	var ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110]; 
 	var ariMatch = 0; //add until reach threshold, where ARI will pick a correct pair
+	var speakYes = true;
+	var speakNiceOne = true;
 	// exports.uppercase = (str) => str.toUpperCase()
 
 
@@ -166,6 +182,17 @@ $(document).ready(function() {
 				else if((_.guess == parseInt($(this).attr("data-id"))*11 || _.guess == parseInt($(this).attr("data-id"))/11 )&& !$(this).hasClass("picked")){
 					//the card is a match, add match attribute
 					$(".picked").addClass("matched");
+					if(speakNiceOne == true){
+						// _.sleep(1000).then(() => { 
+						default_web.thirdFrase();
+						console.log("Nice One");
+						speakNiceOne = false;
+						// });
+						
+					}
+					else if(speakNiceOne == false){
+						speakNiceOne = true;
+					}
 					
 					// Remove ids from array
 					// remove this id from the list of possible matches by removing the element of the array with splice
@@ -390,6 +417,18 @@ $(document).ready(function() {
 				});
 
 			});
+			if(speakYes == true){
+				_.sleep(1000).then(() => { 
+					default_web.secondFrase();
+					console.log("Yes");
+					speakYes = false;
+				});
+				
+			}
+			else if(speakYes == false){
+				speakYes = true;
+			}
+			
 
 		},
 
@@ -416,7 +455,7 @@ $(document).ready(function() {
 				localStorage.setItem('ariNumPairs', ariNumPairs);
 				localStorage.setItem('userNumPairs', userNumPairs);
 
-                default_web.secondFrase();
+                default_web.winFrase();
 				// Memory.showModal();
 				// Memory.$game.fadeOut();
 			}, 1000);

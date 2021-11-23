@@ -20,12 +20,12 @@ class DefaultWeb {
             name: 'robot_info'
         });
     }
-    firstFrase() {
+    secondFrase() {
         let goal_id = '';                       
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "Use the following rating scale to predict how well you will do this task.",
+                text: "<mark name='doTrick trickName=alive_6'/>Use the following rating scale to predict how well you will do this task.",
                 lang_id: "en_GB"
             }
         }, (response) => {
@@ -38,7 +38,7 @@ let default_web = new DefaultWeb();
 
 $(document).ready(function() {
 //  shapes_demo.init();
-  default_web.firstFrase();
+  default_web.secondFrase();
   // Add event listeners
   $("#next").on("touchend", function(){
    // parent.switchConfig("memory_game");
