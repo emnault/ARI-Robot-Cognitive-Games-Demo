@@ -218,6 +218,7 @@ $(document).ready(function() {
 
 					//update user's score
 					window.userNumPairs++;
+					localStorage.setItem('userNumPairs', userNumPairs);
 
 					//and reset guess to null
 					_.guess = null;
@@ -226,10 +227,22 @@ $(document).ready(function() {
 				else {
 					_.guess = null;
 					_.paused = true;
-					setTimeout(function(){
+
+					_.sleep(1500).then(() => { 
+						console.log("Waiting to flip back over");
 						$(".picked").removeClass("picked");
 						Memory.paused = false;
-					}, 600);
+					});
+					// setTimeout(function(){
+					// 	$(".picked").removeClass("picked");
+					// 	Memory.paused = false;
+					// }, 600); //was 600
+
+					// _.sleep(1500).then(() => { 
+					// 	picked1.removeClass("picked");
+					// 	picked2.removeClass("picked");
+					// 	console.log("REMOVED PICK");
+					// });
 
 					if(ariMatch < 3){
 						_.ariIncorrectPair();
@@ -295,7 +308,7 @@ $(document).ready(function() {
 
 			//When card is match
 			// console.log("SLEEPING1");
-			_.sleep(1000).then(() => { 
+			_.sleep(2000).then(() => { 
 
 				// console.log("FINISHED SLEEPING1!");
 				card1 = $(cardOneStr);
@@ -312,7 +325,7 @@ $(document).ready(function() {
 					// picked1.addClass("matched");
 					// picked2.addClass("matched");
 					// console.log("MATCHED");
-					_.sleep(1000).then(() => { 
+					_.sleep(1500).then(() => { 
 						picked1.removeClass("picked");
 						picked2.removeClass("picked");
 						console.log("REMOVED PICK");
@@ -336,6 +349,8 @@ $(document).ready(function() {
 
 			//ARI will select a correct pair, so update score:
 			window.ariNumPairs++;
+			localStorage.setItem('ariNumPairs', ariNumPairs);
+			
 
 			//Every 3 tries, selects a correct pair (use counter & reset to 0 when executes correct match)
 
@@ -375,7 +390,7 @@ $(document).ready(function() {
 
 			//When card is match
 			console.log("SLEEPING1");
-			_.sleep(1000).then(() => { 
+			_.sleep(2000).then(() => { 
 
 				console.log("FINISHED SLEEPING1!");
 				card1 = $(cardOneStr);
@@ -451,7 +466,7 @@ $(document).ready(function() {
 				var strUser = JSON.stringify(window.userNumPairs);
 				console.log(strUser);
 
-				localStorage.clear();
+				//localStorage.clear();
 				localStorage.setItem('ariNumPairs', ariNumPairs);
 				localStorage.setItem('userNumPairs', userNumPairs);
 
@@ -472,6 +487,7 @@ $(document).ready(function() {
 		},
 
 		reset: function(){
+			localStorage.clear();
 			this.hideModal();
 			this.shuffleCards(this.cardsArray);
 			this.setup();

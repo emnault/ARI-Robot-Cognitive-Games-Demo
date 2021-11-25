@@ -2,8 +2,8 @@
 	--xxl-font: 190px;
 	--l-font: 45px; 
 	--m-font: 35px;
-	--s-font: 28px; 
-	--xs-font: 23px;
+	--s-font: 31px; 
+	--xs-font: 28px;
 	--ghost-white: #f8f8f8;
 	--green: #6ca843;
 	--hover-green: #4c901e;
@@ -58,7 +58,7 @@ body {
 }
 .big-green-btn {
     background-color: var(--black);
-    font-size: var(--s-font);
+    font-size: var(--xs-font);
     color: white;
     font-weight: 500;
     border-radius: 10px;
