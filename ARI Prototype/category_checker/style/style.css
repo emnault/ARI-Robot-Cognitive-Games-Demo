@@ -1,0 +1,130 @@
+#box1,
+    #box2,
+    #box3,
+    #cue {
+        float: left;
+        margin: 5px;
+/*        padding: 10px;
+*/    }
+     
+    #box1 {
+        width: 150px;
+        height: 150px;
+        background-color: #42f593;
+        text-align: center;
+    }
+     
+    #box2 {
+        width: 150px;
+        height: 150px;
+        background-color: #B5D5F5;
+        text-align: center;
+    }
+     
+    #box3 {
+        width: 150px;
+        height: 150px;
+        background-color: #BEA7CC;
+        text-align: center;
+    }
+
+    #cue {
+        width: 150px;
+        height: 150px;
+        background-color: #f54266;
+        text-align: center;
+    }
+
+    p {
+        font-size: 25px;
+        font-weight: bold;
+        text-align: center;
+        font-family: "Lucida Console", "Courier New", monospace;
+    }
+
+     
+    .gfg {
+        font-size: 40px;
+        color: #000000;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .horizontal-flex-container {
+      display: flex;
+      flex-flow: row nowrap;
+      flex-wrap:nowrap;
+      justify-content: space-around;
+      margin: 5px;
+    }
+
+    .right {
+	  position: absolute;
+	  right: 350px;
+	  top: 200px;
+	  width: 300px;
+/*	  border: 3px solid #73AD21;
+*/	  padding: 10px;
+	}
+
+	.left {
+	  position: absolute;
+	  right: 900px;
+	  top: 200px;
+	  width: 300px;
+/*	  border: 3px solid #73AD21;
+*/	  padding: 10px;
+	}
+
+	.centerwidth {
+	  position: absolute;
+	  right: 625px;
+	  top: 200px;
+	  width: 300px;
+/*	  border: 3px solid #73AD21;
+*/	  padding: 10px;
+	}
+
+	.categheight {
+	  margin: 0;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	}
+
+	.cueheight {
+	  margin: 0;
+	  position: absolute;
+	  top: 70%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	}
+
+    .cue-text-height {
+      margin: 0;
+      position: absolute;
+      top: 85%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+ 
+
+
+    .img-container{
+        text-align: center;
+
+    }
+/*
+    video {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }*/
+
+    img {
+        width: 300px;
+        height: auto;
+        border-radius: 8px;
+    }

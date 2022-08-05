@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Post-Ratings</title>
+	<link rel="icon" type="image/png" href="../../common_mem_game/images/favicon-pal.png">
+	<!-- common -->
+	<link rel="stylesheet" href="../../common_mem_game/style/Montserrat.css"> 
+	<link rel="stylesheet" href="../../common_mem_game/style/style.css"> 
+	<!-- custom css -->
+	<link rel="stylesheet" href="style/style.css"> 
+	<!-- js -->
+	<script src="../../common_mem_game/js/lib/jquery.js"></script>
+	<script src="../../common_mem_game/js/common.js"></script>
+	<script type="module" src="js/main.js"></script>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+</head>
+<body>
+	<div class="main-container apps-menu" style="display:none">
+		<div class="menu-content">
+			<div class="wrap">
+			<div class="green-title">Category Checker: Post-Ratings<p></div>
+			<div class="text-msg">Use the following rating scale to rate how well you did.</div>
+			<!-- <div class="apps-row"> -->
+				<!-- Memory game -->
+
+				<!-- <div class="app-item" id="memory_game">
+					<div class="app-card">
+						<img src="../common-mem-game/images/photos.svg" >
+					</div>
+					
+				</div> -->
+			<!-- </div> -->
+			<div class="radio-msg">
+			<input type="radio" name="post_rating" value="Five"style="height:30px; width:30px; vertical-align: middle;">5 - I categorised all of the items correctly.<p>
+			<input type="radio" name="post_rating" value="Four"style="height:30px; width:30px; vertical-align: middle;">4 - I categorised 75% of the items correctly.<p>
+			<input type="radio" name="post_rating" value="Three"style="height:30px; width:30px; vertical-align: middle;">3 - I categorised 50% of the items correctly.<p>
+			<input type="radio" name="post_rating" value="Two"style="height:30px; width:30px; vertical-align: middle;">2 - I categorised 25% of the items correctly.<p>
+			<input type="radio" name="post_rating" value="One"style="height:30px; width:30px; vertical-align: middle;">1 - I categorised none of the items correctly.<p></div>
+				<div class="bottom-btns">
+				<div class="big-green-btn" id="back">BACK</div>
+				<div class="big-green-btn" id="next">NEXT</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="wrap">
+		<div class="modal-overlay">
+			<div class="modal">
+				<h2 class="winner">Very well!</h2>
+				<img src="../common_mem_game/images/trophy.svg">
+				<div class="text-msg"> <div id="user-score"></div></div>
+				<div class="text-msg"> <div id="ari-score"></div></div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
