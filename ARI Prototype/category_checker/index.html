@@ -49,8 +49,7 @@
         <div class="horizontal-flex-container">
 
             <div class="img-container">
-        		<img style='border:6px solid #42f593' src="Categories/Food.jpg" alt="Food" id="Food" ondrop="dragDrop(event)"
-                     ondragover="allowDrop(event)"
+        		<img style='border:6px solid #42f593' src="Categories/Food.jpg" alt="Food" id="Food" ondrop="dragDrop(event)" ondragover="allowDrop(event)" ontouchend="touchend(event)"
                 />
                     <p>Food</p>
 
@@ -60,17 +59,20 @@
                 <!-- <img style='border:6px solid #B5D5F5' src="Categories/Animals.jpg" alt="Animals" id="Animals"  ondrop="dragDrop(event)"
                      ondragover="allowDrop(event)"
                 /> -->
-                <img style='border:6px solid #B5D5F5' src="Categories/Animals.jpg" alt="Animals" id="Animals" ontouchend="touchend(ev)"
+                <!-- <img style='border:6px solid #B5D5F5' src="Categories/Animals.jpg" alt="Animals" id="Animals" ontouchend="touchend(ev)"
+                /> -->
+                <img style='border:6px solid #B5D5F5' src="Categories/Animals.jpg" alt="Animals" id="Animals" ondragover="allowDrop(event)" ontouchend="touchend(event)"
                 />
                 <p>Animals</p>
 
             </div>
 
             <div class="img-container">
-
-
-                <img style='border:6px solid #BEA7CC' src="Categories/Countries.jpg" alt="Countries" id="Countries" ondrop="dragDrop(event)"
+                <!-- <img style='border:6px solid #BEA7CC' src="Categories/Countries.jpg" alt="Countries" id="Countries" ondrop="dragDrop(event)"
                      ondragover="allowDrop(event)"
+                /> -->
+
+                <img style='border:6px solid #BEA7CC' src="Categories/Countries.jpg" alt="Countries" id="Countries" ondragover="allowDrop(event)" ontouchend="touchend(event)"
                 />
                 <p>Countries</p>
 
@@ -84,8 +86,9 @@
                 <!-- <img style='border:6px solid #f54266' src="Cues/Highland_Cow.jpg" alt="Cue" id="Cue" class="cueheight" draggable="true"
                 	ondragstart="dragStart(event)"
                 /> -->
-                <img style='border:6px solid #f54266' src="Cues/Highland_Cow.jpg" alt="Cue" id="Cue" class="cueheight" draggable="true"
-                    
+               <!--  <img style='border:6px solid #f54266' src="Cues/Highland_Cow.jpg" alt="Cue" id="Cue" class="cueheight" draggable="true" ontouchstart="dragStart(event)" ontouchmove="drag(event)" ondragstart="dragStart(event)"
+                /> -->
+                <img style='border:6px solid #f54266' src="Cues/Highland_Cow.jpg" alt="Cue" id="Cue" class="cueheight" draggable="true" ondragstart="dragStart(event)" ontouchstart="touchstart(event)" ontouchmove="touchmove(event)"
                 />
             <!-- </div> -->
             <div class="cue-text-height">
@@ -93,7 +96,7 @@
             </div>
 
         </div>
-            <video id="video" ></video>
+            <!-- <video id="video" ></video> -->
         <!-- <video width="320" height="240">
           <source src="Fireworks.mp4" type="video/mp4" id="video">
         </video>  -->

@@ -39,7 +39,7 @@ class DefaultWeb {
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "<mark name='doTrick trickName=bow'/>Great game! I enjoyed playing with you, and I hope you had fun too!", 
+                text: "<mark name='doTrick trickName=alive_2'/> Would you like feedback on this activity?", 
                 lang_id: "en_GB"
             }
         }, (response) => {
@@ -70,66 +70,18 @@ $(document).ready(function() {
   // console.log("Alert - ari score thrown");
 
   
-  document.getElementById("user-score").innerHTML = "You: " + localStorage.getItem('userNumPairs') + " pairs.";
-  document.getElementById("ari-score").innerHTML = "ARI: " + localStorage.getItem('ariNumPairs') + " pairs.";
+  // document.getElementById("user-score").innerHTML = "You: " + localStorage.getItem('userNumPairs') + " pairs.";
+  // document.getElementById("ari-score").innerHTML = "ARI: " + localStorage.getItem('ariNumPairs') + " pairs.";
 
-
-  // Add event listeners
-  $("#next").on("touchend", function(){
-   // parent.switchConfig("memory_game");
-   //window.open("../playing_cards_mem_game/index.html", "_self");
-
-
-   /*
------------------ POP-UP FUNCTION ------------------
-  */
-   (function(){  
- 
-
-    var Memory = {
-
-      
-
-      init: function(){
-        this.$modal = $(".modal");
-        this.$overlay = $(".modal-overlay");
-        this.win();
-      },
-
-
-      win: function(){
-        setTimeout(function(){
-          //default_web.secondFrase();
-          Memory.showModal();
-          //Memory.$game.fadeOut();
-        }, 1000);
-      },
-
-      showModal: function(){
-        console.log("IN SHOW MODAL");
-        default_web.secondFrase();
-        this.$overlay.show();
-        this.$modal.fadeIn("slow");
-        localStorage.clear();
-      },
-
-      hideModal: function(){
-        this.$overlay.hide();
-        this.$modal.hide();
-      }
-
-    }; //close of Memory variable
-
-    Memory.init();
-
-  })();
-
-
-  }); 
 
   $("#back").on("touchend", function(){
    // parent.switchConfig("memory_game");
-   window.open("../playing_cards_mem_game/index.html", "_self");
+   window.open("../reward_fireworks/index.html", "_self"); //to activity customisation
+  });
+  $("#next").on("touchend", function(){
+  //default_web.secondFrase();
+   window.open("../feedback_choice/index.html", "_self");
+   // window.open("../playing_cards_mem_game/index.html", "_self"); //goes to activity feedback choice
   });
 });
 

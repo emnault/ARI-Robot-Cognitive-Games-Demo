@@ -1,0 +1,105 @@
+#grid {
+  display: grid;
+  grid-template-columns: repeat(5, 90px);
+  grid-auto-rows: 50px;
+  grid-gap: 10px;
+  width: 516px;
+}
+
+.btn-container {
+	position: absolute;
+	bottom: 30px;
+  right: 30px;
+}
+.main-container.apps-menu {
+  justify-content: center;
+  align-items: center;
+}
+.menu-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  align-items: center;
+  margin-top: -45px;
+}
+.text-msg {
+  margin-bottom: 60px;
+}
+
+
+
+.flexboxA{
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.flexboxB{
+  display: flex;
+  flex-direction: row;
+  padding: 40px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.horizontal-flex-container {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-wrap:nowrap;
+  justify-content: space-around;
+  margin: 5px;
+}
+
+
+
+.apps-row {
+	display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.app-card {
+	box-shadow: 0px 3px 6px #0000003b;
+  width: 150px;
+  height: 150px;
+  border-radius: 70%;
+  padding: 40px;
+  background: #f2f2f2;
+  margin: 10px;
+}
+.app-card img {
+	width: 130px;
+/*  width: 100%;
+  height: 100%;
+  object-fit: contain;*/
+  
+}
+.app-item {
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 110%;
+}
+.app-item.thermometer {
+	height: 110%;
+}
+.green-title {
+  width: 100%;
+  text-align: center;
+  color: var(--black);
+}
+#games_card .app-card {
+  background-color: #e4d2ab;
+}
+#videocall_card .app-card {
+  background-color: #85b667;
+}
+#temperature_card .app-card {
+  background-color: #9bd2c0;
+}
