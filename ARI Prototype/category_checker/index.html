@@ -16,31 +16,9 @@
     <script type="module" src="js/main.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no">
 
-    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js">
-    
-    import axios from axios;
-
-    const url = "ws://localhost:8000";
-    axios.get(url);
-    then(data=>console.log(data));
-    </script> -->
-
 </head>
  
 <body>
-
-    <!-- Socket server URL: <input type="text" value="ws://localhost:5000/ws" id="url" />
-    <input type="button" value="Connect" id="connect" onclick="connect(document.getElementById('url').value)" />
-    <input type="button" value="Disconnect" id="disconnect" onclick="disconnect()" /><br>
-    <br>
-    Message: <input type="text" value="Hello server!" id="message" />
-    <input type="button" value="Send message" id="send" onclick="sendSocketMessage(document.getElementById('message').value)" /><br>
-    <br>
-    <h2>Log:</h2>
-    <div id="resultsDiv" style="width: 100%">
-        <textarea id="resultsTextArea" rows="20" cols="100"></textarea>
-    </div> -->
-
 
 <div class="gfg">Category Checker</div>
      
@@ -56,11 +34,6 @@
             </div>
 
             <div class="img-container">
-                <!-- <img style='border:6px solid #B5D5F5' src="Categories/Animals.jpg" alt="Animals" id="Animals"  ondrop="dragDrop(event)"
-                     ondragover="allowDrop(event)"
-                /> -->
-                <!-- <img style='border:6px solid #B5D5F5' src="Categories/Animals.jpg" alt="Animals" id="Animals" ontouchend="touchend(ev)"
-                /> -->
                 <img style='border:6px solid #B5D5F5' src="Categories/Animals.jpg" alt="Animals" id="Animals" ondragover="allowDrop(event)" ontouchend="touchend(event)"
                 />
                 <p>Animals</p>
@@ -68,10 +41,6 @@
             </div>
 
             <div class="img-container">
-                <!-- <img style='border:6px solid #BEA7CC' src="Categories/Countries.jpg" alt="Countries" id="Countries" ondrop="dragDrop(event)"
-                     ondragover="allowDrop(event)"
-                /> -->
-
                 <img style='border:6px solid #BEA7CC' src="Categories/Countries.jpg" alt="Countries" id="Countries" ondragover="allowDrop(event)" ontouchend="touchend(event)"
                 />
                 <p>Countries</p>
@@ -82,25 +51,13 @@
         </div>
 
         <div class="img-container">
-            <!-- <div class="cue"> -->
-                <!-- <img style='border:6px solid #f54266' src="Cues/Highland_Cow.jpg" alt="Cue" id="Cue" class="cueheight" draggable="true"
-                	ondragstart="dragStart(event)"
-                /> -->
-               <!--  <img style='border:6px solid #f54266' src="Cues/Highland_Cow.jpg" alt="Cue" id="Cue" class="cueheight" draggable="true" ontouchstart="dragStart(event)" ontouchmove="drag(event)" ondragstart="dragStart(event)"
-                /> -->
                 <img style='border:6px solid #f54266' src="Cues/Highland_Cow.jpg" alt="Cue" id="Cue" class="cueheight" draggable="true" ondragstart="dragStart(event)" ontouchstart="touchstart(event)" ontouchmove="touchmove(event)"
                 />
-            <!-- </div> -->
             <div class="cue-text-height">
                 <p>  </p>
             </div>
 
         </div>
-            <!-- <video id="video" ></video> -->
-        <!-- <video width="320" height="240">
-          <source src="Fireworks.mp4" type="video/mp4" id="video">
-        </video>  -->
-
 
 </body>
  

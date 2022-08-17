@@ -40,10 +40,10 @@ $(document).ready(function() {
 //  shapes_demo.init();
   default_web.secondFrase();
   // Add event listeners
-  $("#next").on("touchend", function(){
-   // parent.switchConfig("memory_game");
-   window.open("../playing_cards_mem_game/index.html", "_self");
-  });
+  // $("#next").on("touchend", function(){
+  //  // parent.switchConfig("memory_game");
+  //  window.open("../playing_cards_mem_game/index.html", "_self");
+  // });
   $("#back").on("touchend", function(){
    // parent.switchConfig("memory_game");
    window.open("../instructions_mem_game/index.html", "_self");

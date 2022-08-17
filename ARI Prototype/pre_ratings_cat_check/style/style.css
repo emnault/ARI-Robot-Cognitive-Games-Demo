@@ -35,6 +35,9 @@
 .text-msg {
   margin-bottom: 60px;
 }
+.text-msg-small {
+  margin-bottom: 40px;
+}
 .apps-row {
 	display: flex;
   width: 100%;

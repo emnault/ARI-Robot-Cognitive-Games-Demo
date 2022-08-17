@@ -1,5 +1,13 @@
 import * as RRLIB from '../../js/modules/rrlib.js'
 // import interact from 'interactjs'
+// import fs from 'fs';
+
+// const fs = require('fs');
+
+// fs.appendFile('message.txt', 'data to append', function (err) {
+//   if (err) throw err;
+//   console.log('Saved!');
+// });
 
 
 class DefaultWeb {
@@ -31,10 +39,92 @@ class DefaultWeb {
             goal_id = response.goal_id;
         });
     }
+    keepGoing() {
+        let goal_id = '';                       
+        // Respond
+        this.tts_action.sendGoal({
+            rawtext: {
+                text: "Keep going!", 
+                lang_id: "en_GB"
+            }
+        }, (response) => {
+            goal_id = response.goal_id;
+        });
+    }
+    greatWork() {
+        let goal_id = '';                       
+        // Respond
+        this.tts_action.sendGoal({
+            rawtext: {
+                text: "Keep going!", 
+                lang_id: "en_GB"
+            }
+        }, (response) => {
+            goal_id = response.goal_id;
+        });
+    }
+    youCanDoIt() {
+        let goal_id = '';                       
+        // Respond
+        this.tts_action.sendGoal({
+            rawtext: {
+                text: "You can do it!", 
+                lang_id: "en_GB"
+            }
+        }, (response) => {
+            goal_id = response.goal_id;
+        });
+    }
+    almostThere() {
+        let goal_id = '';                       
+        // Respond
+        this.tts_action.sendGoal({
+            rawtext: {
+                text: "Almost there!", 
+                lang_id: "en_GB"
+            }
+        }, (response) => {
+            goal_id = response.goal_id;
+        });
+    }
+
+    finish() {
+        let goal_id = '';                       
+        // Respond
+        this.tts_action.sendGoal({
+            rawtext: {
+                text: "All done!", 
+                lang_id: "en_GB"
+            }
+        }, (response) => {
+            goal_id = response.goal_id;
+        });
+    }
+    // ariFeedback() {
+    //     let goal_id = '';     
+    //     const feedback = ["Keep going!", "Great work!", "You can do it!", "Almost there!"];
+
+    //     //randomise feedback given
+    //     const randomElement = feedback[Math.floor(Math.random() * array.length)];
+    //     const speech = feedback[randomElement];
+    //     console.log("Feedback: " + feedback[randomElement]);
+    //     // Respond
+    //     this.tts_action.sendGoal({
+    //         rawtext: {
+    //             text: speech,
+    //             lang_id: "en_GB"
+    //         }
+    //     }, (response) => {
+    //         goal_id = response.goal_id;
+    //     });
+    // }
 }
 
 let default_web = new DefaultWeb();
 let moving = null;
+var shuffle;
+var randFeed;
+var end;
 
 
 $(document).ready(function() {
@@ -44,7 +134,7 @@ $(document).ready(function() {
     var startTime = new Date();
     var endTime;
 
-    var cues = [
+    var cues_pre_shuffle = [
         {
             img: "Cues/Highland_Cow.jpg",
             id: "Animals",
@@ -123,361 +213,151 @@ $(document).ready(function() {
         ];
 //  shapes_demo.init();
   default_web.firstFrase();
+  
+  console.log("Order: " + cues);
+
+  shuffle = function(array){
+      let currentIndex = array.length,  randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+
+      return array;
+  }
+
+  //rand feedback during interaction
+  randFeed = function(){
+    //0 = min, 3 = max
+        var idx = Math.floor(Math.random() * 4);
+        if (idx == 0){
+            default_web.keepGoing();
+        }
+        else if (idx == 1){
+            default_web.greatWork();
+        }
+        else if (idx == 2){
+            default_web.youCanDoIt();
+        }
+        else{ //idx = 3
+            default_web.almostThere();
+        }
+    }
+
+    end = function(){
+      endTime = new Date();
+      var timeDiff = endTime - startTime; //in ms
+      // strip the ms
+      timeDiff /= 1000;
+
+      // get seconds 
+      var seconds = Math.round(timeDiff);
+      console.log("Elapsed Time: " + seconds + " seconds");
+    }
+
+  var cues = shuffle(cues_pre_shuffle); //Shuffle cues
+  var firstImage = cues[0].img;
+  console.log("First img: " + firstImage);
+  document.getElementById("Cue").src=firstImage;
+
+  //hide finish button until game is completed
+
   // Add event listeners
   $("#memory_game").on("touchend", function(){
    // parent.switchConfig("memory_game");
    window.open("../pre_ratings_mem_game/index.html", "_self");
   });
-  $("#Cue").on({
-  	touchstart: function(ev){
-  	console.log("----DRAG STARTED----");
-  	moving = ev.target;
 
-    moving.style.height = moving.clientHeight;
-    moving.style.width = moving.clientWidth;
-    moving.style.position = 'fixed';
-	// ev.dataTransfer.setData("text", ev.target.id); 
-	},
-	touchmove: function(event){
-    	console.log("----DRAG OVER----");
-		// ev.preventDefault();
-		if (moving) {
-	        if (event.clientX) {
-	            // mousemove
-	            moving.style.left = event.clientX - moving.clientWidth/2;
-	            moving.style.top = event.clientY - moving.clientHeight/2;
-	        } else {
-	            // touchmove - assuming a single touchpoint
-	            moving.style.left = event.changedTouches[0].clientX - moving.clientWidth/2;
-	            moving.style.top = event.changedTouches[0].clientY - moving.clientHeight/2;
-	        }
-    	}
-    }
-
-
-  });
   $("#Animals").on("touchend", function(ev){
-	      ev.preventDefault(); 
-	        // var data = ev.dataTransfer.getData("text");
-	        // ev.target.appendChild(document.getElementById(data));
-	        if(cues[cueIdx].id==="Animals"){
-	            numCorrect++;
-	            var audio = new Audio('correct.mp3');
-	            audio.play();
-	        }
-	        console.log("Cues: " + cues.length);
-	        
-	        
-	        cueIdx++;
-	        if(cueIdx==cues.length){
-	            end();
-	            console.log("Score: " + numCorrect);
-	        }
-	        else{
-	            document.getElementById("Cue").src=cues[cueIdx].img;
-	            document.getElementById("Cue").style.top=70 + "%";  
-	        }
-	        
-	    
-
-      
+      ev.preventDefault(); 
+        if(cues[cueIdx].id==="Animals"){
+            numCorrect++;
+            var audio = new Audio('correct.mp3');
+            audio.play();
+        }
+        else{
+            return;
+        }        
+        
+        cueIdx++;
+        if(cueIdx==cues.length-1){
+            default_web.finish();
+            end();
+            console.log("Score: " + numCorrect);
+        }
+        else{
+            document.getElementById("Cue").src=cues[cueIdx].img;
+            document.getElementById("Cue").style.top=70 + "%";  
+        }
+        if( (cueIdx==5) | (cueIdx==10)){
+            randFeed();
+        }
   	   
   	});
+
+    $("#Food").on("touchend", function(ev){
+      ev.preventDefault(); 
+        if(cues[cueIdx].id==="Food"){
+            numCorrect++;
+            var audio = new Audio('correct.mp3');
+            audio.play();
+        }
+        else{
+            return;
+        }
+        
+        
+        cueIdx++;
+        if(cueIdx==cues.length-1){
+            default_web.finish();
+            end();
+            console.log("Score: " + numCorrect);
+        }
+        else{
+            document.getElementById("Cue").src=cues[cueIdx].img;
+            document.getElementById("Cue").style.top=70 + "%";  
+        }
+        if( (cueIdx==5) | (cueIdx==10)){
+            randFeed();
+        }
+       
     });
 
-
-/*
------------------ GAME FUNCTION ------------------
-*/
-// (function(){
-//     var cueIdx = 0;
-//     var numCorrect = 0;
-//     var startTime = new Date();
-//     var endTime;
-
-//     var cues = [
-//         {
-//             img: "Cues/Highland_Cow.jpg",
-//             id: "Animals",
-//         },
-        
-//         {
-//             img: "Cues/Quiche.jpg",
-//             id: "Food",
-//         },
-
-//         {
-//             img: "Cues/Horse.png",
-//             id: "Animals",
-//         },
-
-//         {
-//             img: "Cues/USA.png",
-//             id: "Countries",
-//         },
-
-//         {
-//             img: "Cues/Sushi.jpeg",
-//             id: "Food",
-//         },
-
-//         {
-//             img: "Cues/Puppy.jpg",
-//             id: "Animals",
-//         },
-
-//         {
-//             img: "Cues/Japan.png",
-//             id: "Countries",
-//         },
-
-//         {
-//             img: "Cues/Burger.jpg",
-//             id: "Food",
-//         },
-
-//         {
-//             img: "Cues/Germany.png",
-//             id: "Countries",
-//         },
-
-//         {
-//             img: "Cues/Elephant.jpg",
-//             id: "Animals",
-//         },
-
-//         {
-//             img: "Cues/Fish.jpg",
-//             id: "Animals",
-//         },
-
-//         {
-//             img: "Cues/Breakfast.jpg",
-//             id: "Food",
-//         },
-
-//         {
-//             img: "Cues/Tiger.jpg",
-//             id: "Animals",
-//         },
-
-//         {
-//             img: "Cues/Cupcake.jpg",
-//             id: "Food",
-//         },
-
-//         {
-//             img: "Cues/France.png",
-//             id: "Countries",
-//         },
-
-//         ];
-
-
-//     // document.addEventListener("dragstart", (event) => {
-//     // 	console.log("----DRAG STARTED----");
-//     // 	event.dataTransfer.setData("text", ev.target.id);
-
-//     // });
-
-//   	function end() {
-//       endTime = new Date();
-//       var timeDiff = endTime - startTime; //in ms
-//       // strip the ms
-//       timeDiff /= 1000;
-
-//       // get seconds 
-//       var seconds = Math.round(timeDiff);
-//       console.log("Elapsed Time: " + seconds + " seconds");
-//     }
-
-
-//     function allowDrop(ev) {
-//         ev.preventDefault();
-//     }
- 
-//     function dragStart(ev) {
-
-//         //ev.dataTransfer.setData("text", ev.target.id);
-//     }
-
-//     function drag(ev) {
-//         const cue = document.getElementById('Cue');
-//         cue.style.top = '150px';
-//         cue.style.left = '150px';
-//         console.log("CUE MOVED");
-//         //ev.dataTransfer.setData("text", ev.target.id);
-//     }
-
-//     // function touchend(ev) {
-//     // 	ev.preventDefault();
-//     //     // var data = ev.dataTransfer.getData("text");
-//     //     // ev.target.appendChild(document.getElementById(data));
-//     //     if(cues[cueIdx].id==ev.target.id){
-
-//     //         numCorrect++;
-//     //         var audio = new Audio('correct.mp3');
-//     //         audio.play();
-//     //     }
-//     //     console.log(cues.length);
+    $("#Countries").on("touchend", function(ev){
+      ev.preventDefault(); 
+        if(cues[cueIdx].id==="Countries"){
+            numCorrect++;
+            var audio = new Audio('correct.mp3');
+            audio.play();
+        }
+        else{
+            return;
+        }
         
         
-//     //     cueIdx++;
-//     //     if(cueIdx==cues.length){
-//     //         end();
-//     //         console.log("Score: " + numCorrect);
-//     //         var video = document.getElementById('video');
-//     //         video.setAttribute('src', 'Fireworks.mp4');
-//     //         video.setAttribute('top', '50%');
-//     //         video.setAttribute('left', '50%');
-//     //         video.setAttribute('width', '800px');
-//     //         video.setAttribute('height', 'auto');
-//     //         video.play();
-//     //     }
-//     //     else{
-//     //         document.getElementById("Cue").src=cues[cueIdx].img;
-//     //         document.getElementById("Cue").style.top=70 + "%";  
-//     //     }
-//     // }
- 
-//     function dragDrop(ev) {
-//         ev.preventDefault();
-//         // var data = ev.dataTransfer.getData("text");
-//         // ev.target.appendChild(document.getElementById(data));
-//         if(cues[cueIdx].id==ev.target.id){
+        cueIdx++;
+        if(cueIdx==cues.length-1){
+            default_web.finish();
+            end();
+            console.log("Score: " + numCorrect);
+        }
+        else{
+            
+            document.getElementById("Cue").src=cues[cueIdx].img;
+            document.getElementById("Cue").style.top=70 + "%";  
+        }
+        if( (cueIdx==5) | (cueIdx==10)){
+            randFeed();
+        }
+       
+    });
 
-//             numCorrect++;
-//             var audio = new Audio('correct.mp3');
-//             audio.play();
-//         }
-//         console.log(cues.length);
-        
-        
-//         cueIdx++;
-//         if(cueIdx==cues.length){
-//             end();
-//             console.log("Score: " + numCorrect);
-//             var video = document.getElementById('video');
-//             video.setAttribute('src', 'Fireworks.mp4');
-//             video.setAttribute('top', '50%');
-//             video.setAttribute('left', '50%');
-//             video.setAttribute('width', '800px');
-//             video.setAttribute('height', 'auto');
-//             video.play();
-//         }
-//         else{
-//             document.getElementById("Cue").src=cues[cueIdx].img;
-//             document.getElementById("Cue").style.top=70 + "%";  
-//         }
-        
-//     }
-
-//     })();
-
-
-//DRAGGING//
-
-
-
-//     interact('.draggable')
-//       .draggable({
-//         // enable inertial throwing
-//         inertia: true,
-//         // keep the element within the area of it's parent
-//         modifiers: [
-//           interact.modifiers.restrictRect({
-//             restriction: 'parent',
-//             endOnly: true
-//           })
-//         ],
-//         // enable autoScroll
-//         autoScroll: true,
-
-//         listeners: {
-//           // call this function on every dragmove event
-//           move: dragMoveListener,
-
-//           // call this function on every dragend event
-//           end (event) {
-//             var textEl = event.target.querySelector('p')
-
-//             textEl && (textEl.textContent =
-//               'moved a distance of ' +
-//               (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-//                          Math.pow(event.pageY - event.y0, 2) | 0))
-//                 .toFixed(2) + 'px')
-//           }
-//         }
-//       })
-
-//     function dragMoveListener (event) {
-//       var target = event.target
-//       // keep the dragged position in the data-x/data-y attributes
-//       var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-//       var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
-
-//       // translate the element
-//       target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
-
-//       // update the posiion attributes
-//       target.setAttribute('data-x', x)
-//       target.setAttribute('data-y', y)
-//     }
-
-//     // this function is used later in the resizing and gesture demos
-//     window.dragMoveListener = dragMoveListener
-
-
-// //DRAG AND DROP//
-
-
-// interact('.horizontal-flex-container').dropzone({
-//   // only accept elements matching this CSS selector
-//   accept: '#Animals',
-//   // Require a 75% element overlap for a drop to be possible
-//   overlap: 0.75,
-
-//   // listen for drop related events:
-
-//   ondropactivate: function (event) {
-//     // add active dropzone feedback
-//     event.target.classList.add('drop-active')
-//   },
-//   ondragenter: function (event) {
-//     var draggableElement = event.relatedTarget
-//     var dropzoneElement = event.target
-
-//     // feedback the possibility of a drop
-//     dropzoneElement.classList.add('drop-target')
-//     draggableElement.classList.add('can-drop')
-//     draggableElement.textContent = 'Dragged in'
-//   },
-//   ondragleave: function (event) {
-//     // remove the drop feedback style
-//     event.target.classList.remove('drop-target')
-//     event.relatedTarget.classList.remove('can-drop')
-//     event.relatedTarget.textContent = 'Dragged out'
-//   },
-//   ondrop: function (event) {
-//     event.relatedTarget.textContent = 'Dropped'
-//   },
-//   ondropdeactivate: function (event) {
-//     // remove active dropzone feedback
-//     event.target.classList.remove('drop-active')
-//     event.target.classList.remove('drop-target')
-//   }
-// })
-
-// interact('.drag-drop')
-//   .draggable({
-//     inertia: true,
-//     modifiers: [
-//       interact.modifiers.restrictRect({
-//         restriction: 'parent',
-//         endOnly: true
-//       })
-//     ],
-//     autoScroll: true,
-//     // dragMoveListener from the dragging demo above
-//     listeners: { move: dragMoveListener }
-//   })
+    });
