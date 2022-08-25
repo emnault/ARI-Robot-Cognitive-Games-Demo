@@ -46,7 +46,11 @@ $(document).ready(function() {
   // });
   $("#back").on("touchend", function(){
    // parent.switchConfig("memory_game");
-   window.open("../instructions_mem_game/index.html", "_self");
+   window.open("../customisation_cue/index.html", "_self");
+  });
+  $("#next").on("touchend", function(){
+   // parent.switchConfig("memory_game");
+   window.open("../category_checker/index.html", "_self");
   });
 });
 

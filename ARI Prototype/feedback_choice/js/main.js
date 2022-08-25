@@ -4,6 +4,7 @@ import * as RRLIB from '../../js/modules/rrlib.js'
 // RRLIB speech for the games
 
 class DefaultWeb {
+
     constructor() {
         this.ros = new RRLIB.Ros({
             host: 'http://' + window.location.hostname
@@ -20,6 +21,20 @@ class DefaultWeb {
             name: 'robot_info'
         });
     }
+  //   showModal() {
+  //   	console.log ("IN SHOW MODAL");
+		// overlay.show();
+		// modal.fadeIn("slow");
+  //   }
+  //   hideModal() {
+		// overlay.hide();
+		// modal.hide();
+  //   }
+  //   resetModal() {
+  //       localStorage.clear();
+		// hideModal();
+  //   }
+
     async firstFrase() {
         let goal_id = '';                       
         // Respond
@@ -53,6 +68,13 @@ class DefaultWeb {
 }
 
 let default_web = new DefaultWeb();
+window.ariNumPairs = 0;
+window.userNumPairs = 0;
+// var overlay = document.getElementsByClassName("modal-overlay");
+// var modal = document.getElementsByClassName("modal");
+
+
+
 
 $(document).ready(function() {
 //  shapes_demo.init();
@@ -66,5 +88,54 @@ $(document).ready(function() {
         parent.switchConfig("post_activity");
     // window.open("../post_ratings_cat_check/index.html", "_self");
   });
+    $("#yes").on("touchend", function(){
+        default_web.secondFrase(); //Phrase for showing scores
+        // console.log("SHOWING MODAL");
+  //       overlay.show();
+		// modal.fadeIn("slow");
+        // default_web.showModal();
+        window.open("../activity_feedback/index.html", "_self");
+        // document.getElementsByClassName("modal-overlay").style.display = "inline";
+        // document.getElementsByClassName("modal").style.display = "inline";
+  });
+  //   $("#next").on("touchend", function(){
+  //       default_web.secondFrase(); //Phrase for next slide
+  //       default_web.hideModal();
+  // });
 });
+
+
+// (function(){
+
+// 	var Memory = {
+
+// 		//this.ids = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99,110]; 
+
+
+// 		init: function(){
+// 			this.$modal = $(".modal");
+// 			this.$overlay = $(".modal-overlay");
+// 		},
+
+// 		showModal: function(){
+// 			this.$overlay.show();
+// 			this.$modal.fadeIn("slow");
+// 		},
+
+// 		hideModal: function(){
+// 			this.$overlay.hide();
+// 			this.$modal.hide();
+// 		},
+
+// 		reset: function(){
+// 			localStorage.clear();
+// 			this.hideModal();
+// 			this.shuffleCards(this.cardsArray);
+// 			this.setup();
+// 			this.$game.show("slow");
+// 		}
+// 	};
+
+// 	Memory.init();
+// })();
 

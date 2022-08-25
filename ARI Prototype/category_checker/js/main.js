@@ -130,9 +130,11 @@ var end;
 $(document).ready(function() {
 
     var cueIdx = 0;
-    var numCorrect = 0;
     var startTime = new Date();
     var endTime;
+    var audio = new Audio('correct.mp3');
+    audio.preload="auto";
+    console.log("AUDIO PRELOAD: " + audio.preload);
 
     var cues_pre_shuffle = [
         {
@@ -214,7 +216,6 @@ $(document).ready(function() {
 //  shapes_demo.init();
   default_web.firstFrase();
   
-  console.log("Order: " + cues);
 
   shuffle = function(array){
       let currentIndex = array.length,  randomIndex;
@@ -279,9 +280,11 @@ $(document).ready(function() {
   $("#Animals").on("touchend", function(ev){
       ev.preventDefault(); 
         if(cues[cueIdx].id==="Animals"){
-            numCorrect++;
-            var audio = new Audio('correct.mp3');
+            // var audio = new Audio('correct.mp3');
+            console.log("Animal AUDIO Started");
+            audio.currentTime = 0;
             audio.play();
+            console.log("ANIMAL AUDIO Finished");
         }
         else{
             return;
@@ -291,7 +294,6 @@ $(document).ready(function() {
         if(cueIdx==cues.length-1){
             default_web.finish();
             end();
-            console.log("Score: " + numCorrect);
         }
         else{
             document.getElementById("Cue").src=cues[cueIdx].img;
@@ -306,9 +308,11 @@ $(document).ready(function() {
     $("#Food").on("touchend", function(ev){
       ev.preventDefault(); 
         if(cues[cueIdx].id==="Food"){
-            numCorrect++;
-            var audio = new Audio('correct.mp3');
+            // var audio = new Audio('correct.mp3');
+            console.log("FOOD AUDIO Started");
+            audio.currentTime = 0;
             audio.play();
+            console.log("FOOD AUDIO Finished");
         }
         else{
             return;
@@ -319,7 +323,6 @@ $(document).ready(function() {
         if(cueIdx==cues.length-1){
             default_web.finish();
             end();
-            console.log("Score: " + numCorrect);
         }
         else{
             document.getElementById("Cue").src=cues[cueIdx].img;
@@ -334,9 +337,11 @@ $(document).ready(function() {
     $("#Countries").on("touchend", function(ev){
       ev.preventDefault(); 
         if(cues[cueIdx].id==="Countries"){
-            numCorrect++;
-            var audio = new Audio('correct.mp3');
+            // var audio = new Audio('correct.mp3');
+            console.log("Country AUDIO Started");
+            audio.currentTime = 0;
             audio.play();
+            console.log("Country AUDIO Finished");
         }
         else{
             return;
@@ -347,7 +352,6 @@ $(document).ready(function() {
         if(cueIdx==cues.length-1){
             default_web.finish();
             end();
-            console.log("Score: " + numCorrect);
         }
         else{
             
@@ -360,4 +364,4 @@ $(document).ready(function() {
        
     });
 
-    });
+});

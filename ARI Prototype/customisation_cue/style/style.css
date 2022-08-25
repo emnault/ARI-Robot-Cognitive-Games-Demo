@@ -1,0 +1,188 @@
+.btn-container {
+	position: absolute;
+	bottom: 30px;
+  right: 30px;
+  margin: 10px;
+}
+
+.bottom-btns {
+  height: 95px;
+  display: flex;
+  justify-content: space-around;    
+  align-items: center;
+}
+.main-container.apps-menu {
+  justify-content: center;
+  align-items: center;
+}
+.menu-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  align-items: center;
+  margin-top: -45px;
+}
+.text-msg {
+  margin-bottom: 60px;
+}
+.apps-row {
+	display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.app-card {
+	box-shadow: 0px 3px 6px #0000003b;
+  border-radius: 23px;
+  padding: 40px;
+  background: #e4d2ab;
+}
+.app-card img {
+	width: 130px;
+}
+.app-item {
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 110%;
+}
+.app-item.thermometer {
+	height: 110%;
+}
+.green-title {
+  width: 100%;
+  text-align: center;
+  color: var(--black);
+}
+#games_card .app-card {
+  background-color: #e4d2ab;
+}
+#videocall_card .app-card {
+  background-color: #85b667;
+}
+#temperature_card .app-card {
+  background-color: #9bd2c0;
+}
+
+
+
+.wrap {
+  position: relative;
+  height: 85%;
+  min-height: 500px;
+  padding: 30px;
+}
+
+.modal-overlay {
+  display: none;
+  background: rgba(0, 0, 0, .8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.modal {
+  display: none;
+  position: relative;
+  width: 500px; 
+  height: 400px;
+  max-height: 90%;
+  max-width: 90%;
+  min-height: 380px;
+  margin: 0 auto;
+  background: white;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 30px 10px;
+}
+.modal .winner {
+  font-size: var(--l-font);
+    text-align: center;
+    color: var(--green);
+}
+@media (max-width: 480px) {
+  .modal .winner {
+   font-size: 60px;
+  }
+}
+.modal h2 {
+  margin: 0;
+}
+.modal img {
+  width: 120px;
+    margin-top: 20px;
+    margin-left: 170px;
+}
+.modal .restart {
+    margin: 30px auto;
+    padding: 20px 40px;
+    display: block;
+    font-size: var(--m-font);
+    border: none;
+    background: linear-gradient(var(--green), var(--dark-green));
+    border-radius: 10px;
+    color: white;
+}
+.modal .restart:hover {
+  background: linear-gradient(#222, black);
+}
+.modal .message {
+  text-align: center;
+}
+.modal .message a {
+  text-decoration: none;
+  color: #28afe6;
+  font-weight: bold;
+}
+.modal .message a:hover {
+  color: #56c0eb;
+  border-bottom: 1px dotted #56c0eb;
+}
+.modal .share-text {
+  text-align: center;
+  margin: 10px auto;
+}
+.modal .social {
+  margin: 20px auto;
+  text-align: center;
+}
+.modal .social li {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+}
+.modal .social li:last-child {
+  margin-right: 0;
+}
+.modal .social li a {
+  display: block;
+  line-height: 50px;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.modal .social li a.facebook {
+  background: #3b5998;
+}
+.modal .social li a.facebook:hover {
+  background: #4c70ba;
+}
+.modal .social li a.google {
+  background: #d34836;
+}
+.modal .social li a.google:hover {
+  background: #dc6e60;
+}
+.modal .social li a.twitter {
+  background: #4099ff;
+}
+.modal .social li a.twitter:hover {
+  background: #73b4ff;
+}
+ 
+
