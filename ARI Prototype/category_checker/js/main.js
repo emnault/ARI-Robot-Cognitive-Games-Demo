@@ -130,8 +130,9 @@ var end;
 $(document).ready(function() {
 
     var cueIdx = 0;
-    var startTime = new Date();
+    var startTime;
     var endTime;
+    var numErrors = 0;
     var audio = new Audio('correct.mp3');
     audio.preload="auto";
     console.log("AUDIO PRELOAD: " + audio.preload);
@@ -262,6 +263,11 @@ $(document).ready(function() {
       // get seconds 
       var seconds = Math.round(timeDiff);
       console.log("Elapsed Time: " + seconds + " seconds");
+
+        localStorage.setItem('time', seconds);
+        localStorage.setItem('errors', numErrors);
+
+
     }
 
   var cues = shuffle(cues_pre_shuffle); //Shuffle cues
@@ -272,21 +278,23 @@ $(document).ready(function() {
   //hide finish button until game is completed
 
   // Add event listeners
-  $("#memory_game").on("touchend", function(){
-   // parent.switchConfig("memory_game");
-   window.open("../pre_ratings_mem_game/index.html", "_self");
-  });
+  // $("#memory_game").on("touchend", function(){
+  //  // parent.switchConfig("memory_game");
+  //  window.open("../pre_ratings_mem_game/index.html", "_self");
+  // });
 
   $("#Animals").on("touchend", function(ev){
       ev.preventDefault(); 
+        if (cueIdx ==0){
+            startTime = new Date();
+        }
         if(cues[cueIdx].id==="Animals"){
             // var audio = new Audio('correct.mp3');
-            console.log("Animal AUDIO Started");
             audio.currentTime = 0;
             audio.play();
-            console.log("ANIMAL AUDIO Finished");
         }
         else{
+            numErrors++;
             return;
         }        
         
@@ -307,14 +315,16 @@ $(document).ready(function() {
 
     $("#Food").on("touchend", function(ev){
       ev.preventDefault(); 
+        if (cueIdx ==0){
+            startTime = new Date();
+        }
         if(cues[cueIdx].id==="Food"){
             // var audio = new Audio('correct.mp3');
-            console.log("FOOD AUDIO Started");
             audio.currentTime = 0;
             audio.play();
-            console.log("FOOD AUDIO Finished");
         }
         else{
+            numErrors++;
             return;
         }
         
@@ -336,14 +346,16 @@ $(document).ready(function() {
 
     $("#Countries").on("touchend", function(ev){
       ev.preventDefault(); 
+        if (cueIdx ==0){
+            startTime = new Date();
+        }
         if(cues[cueIdx].id==="Countries"){
             // var audio = new Audio('correct.mp3');
-            console.log("Country AUDIO Started");
             audio.currentTime = 0;
             audio.play();
-            console.log("Country AUDIO Finished");
         }
         else{
+            numErrors++;
             return;
         }
         

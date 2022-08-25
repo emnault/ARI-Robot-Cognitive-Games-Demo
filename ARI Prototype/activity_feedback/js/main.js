@@ -58,6 +58,8 @@ let default_web = new DefaultWeb();
 
 document.getElementById("time").innerHTML = "Time to complete activity: " + localStorage.getItem('time') + " seconds";
 document.getElementById("errors").innerHTML = "Errors: " + localStorage.getItem('errors');
+document.getElementById("pre_rating").innerHTML = "Pre-Rating Score: " + localStorage.getItem('pre_rating');
+document.getElementById("post_rating").innerHTML = "Post-Rating Score: " + localStorage.getItem('post_rating');
 localStorage.clear();
 
 

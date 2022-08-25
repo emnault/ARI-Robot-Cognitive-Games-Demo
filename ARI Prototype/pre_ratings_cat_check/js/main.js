@@ -50,6 +50,9 @@ $(document).ready(function() {
   });
   $("#next").on("touchend", function(){
    // parent.switchConfig("memory_game");
+   var preRating = document.querySelector('input[name="pre_rating"]:checked').value;
+    localStorage.setItem('pre_rating', preRating);
+
    window.open("../category_checker/index.html", "_self");
   });
 });

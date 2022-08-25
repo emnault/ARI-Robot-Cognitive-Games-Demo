@@ -25,7 +25,7 @@ class DefaultWeb {
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "<mark name='doTrick trickName=rh_point_at_self'/> This is where you can select the rewards to be used throughout the session. <mark name='doTrick trickName=nod'/>For today we will use the fireworks and bubbly. Press next to continue.", 
+                text: "<mark name='doTrick trickName=nod'/> This is where you can select the rewards to be used throughout the session. <mark name='doTrick trickName=alive_3'/>For today we will use the fireworks and bubbly. Press next to continue.", 
                 lang_id: "en_GB"
             }
         }, (response) => {
@@ -40,7 +40,7 @@ class DefaultWeb {
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "<mark name='doTrick trickName=rh_point_at_self'/> From this menu you can select what activity you'd like to do.", 
+                text: "<mark name='doTrick trickName=rh_point_at_self'/> From this menu you can select what activity you'd like to do. <mark name='doTrick trickName=nod'/>For the sake of this demonstration, we will do the category checker activity.", 
                 lang_id: "en_GB"
             }
         }, (response) => {

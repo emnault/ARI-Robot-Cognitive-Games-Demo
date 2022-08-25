@@ -79,6 +79,8 @@ $(document).ready(function() {
    window.open("../reward_fireworks/index.html", "_self"); //to activity customisation
   });
   $("#next").on("touchend", function(){
+    var postRating = document.querySelector('input[name="post_rating"]:checked').value;
+    localStorage.setItem('post_rating', postRating);
   //default_web.secondFrase();
    window.open("../feedback_choice/index.html", "_self");
    // window.open("../playing_cards_mem_game/index.html", "_self"); //goes to activity feedback choice
