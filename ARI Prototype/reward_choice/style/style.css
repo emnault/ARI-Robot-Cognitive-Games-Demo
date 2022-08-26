@@ -5,6 +5,15 @@
   grid-gap: 10px;
   width: 516px;
 }
+.bottom-btns {
+  height: 95px;
+  display: flex;
+  justify-content: space-around;    
+  align-items: center;
+}
+.margin{
+  margin: 30px;
+}
 
 .btn-container {
 	position: absolute;
@@ -55,6 +64,13 @@ img {
   justify-content: space-around;
   margin: 5px;
 }
+.wrap {
+  /*position: relative;
+  height: 85%;
+  min-height: 500px;
+  padding: 30px;*/
+  justify-content: space-around;
+}
 
 
 
@@ -69,7 +85,7 @@ img {
   height: 150px;
   border-radius: 70%;
   padding: 40px;
-  background: #f2f2f2;
+  background: #e6ffff;
   margin: 10px;
 }
 .app-card img {

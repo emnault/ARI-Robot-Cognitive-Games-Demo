@@ -9,6 +9,9 @@
   justify-content: space-around;    
   align-items: center;
 }
+.margin{
+  margin: 30px;
+}
 .wrap {
   position: relative;
   /*height: 85%;*/

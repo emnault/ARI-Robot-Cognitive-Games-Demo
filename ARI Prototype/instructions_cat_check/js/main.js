@@ -60,5 +60,9 @@ $(document).ready(function() {
    // parent.switchConfig("memory_game");
     window.open("../customisation_category/index.html", "_self");
   });
+    $("#back").on("touchend", function(){
+   parent.switchConfig("activity_choice_slideshow");
+    // window.open("../customisation_category/index.html", "_self");
+  });
 });
 

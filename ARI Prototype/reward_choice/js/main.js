@@ -64,5 +64,9 @@ $(document).ready(function() {
         parent.switchConfig("activity_choice_slideshow");
     //window.open("../activity_choice_slideshow", "_self");
   });
+    $("#back").on("touchend", function(){
+        parent.switchConfig("home_page");
+    //window.open("../activity_choice_slideshow", "_self");
+  });
 });
 

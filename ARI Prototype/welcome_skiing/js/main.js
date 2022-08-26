@@ -50,6 +50,21 @@ class DefaultWeb {
 
         return;
     }
+    pressNext() {
+        let goal_id = '';                       
+        // Respond
+        this.tts_action.sendGoal({
+            rawtext: {
+                // text: "<mark name='doTrick trickName=rh_point_at_self'/> From this menu you can select what activity you'd like to do.", 
+                text: "<mark name='doTrick trickName=alive_1'/> Press next to continue.", 
+                lang_id: "en_GB"
+            }
+        }, (response) => {
+            goal_id = response.goal_id;
+        });
+
+        return;
+    }
 
     
 }
@@ -73,6 +88,9 @@ $(document).ready(function() {
         //wait for ARI to finish speaking before playing video
         
         video.play();
+        await delay(7000);
+        document.getElementById("next").style.background='#99ff99';
+        default_web.pressNext();
     }
     //Play ski video
     playVideo();

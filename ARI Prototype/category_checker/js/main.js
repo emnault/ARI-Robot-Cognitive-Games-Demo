@@ -56,7 +56,7 @@ class DefaultWeb {
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "Keep going!", 
+                text: "Great work!", 
                 lang_id: "en_GB"
             }
         }, (response) => {
@@ -179,7 +179,7 @@ $(document).ready(function() {
         },
 
         {
-            img: "Cues/Germany.png",
+            img: "Cues/Germany.jpeg",
             id: "Countries",
         },
 
@@ -211,6 +211,54 @@ $(document).ready(function() {
         {
             img: "Cues/France.png",
             id: "Countries",
+        },
+        {
+            img: "Cues/Spain.png",
+            id: "Countries",
+        },
+        {
+            img: "Cues/Italy.jpeg",
+            id: "Countries",
+        },
+        {
+            img: "Cues/UK.jpeg",
+            id: "Countries",
+        },
+        {
+            img: "Cues/Soup.jpeg",
+            id: "Food",
+        },
+        {
+            img: "Cues/Salad.jpeg",
+            id: "Food",
+        },
+        {
+            img: "Cues/Risotto.jpeg",
+            id: "Food",
+        },
+        {
+            img: "Cues/Pasta.jpeg",
+            id: "Food",
+        },
+        {
+            img: "Cues/India.png",
+            id: "Countries",
+        },
+        {
+            img: "Cues/Bear.jpeg",
+            id: "Animals",
+        },
+        {
+            img: "Cues/Cat.jpeg",
+            id: "Animals",
+        },
+        {
+            img: "Cues/Koala.jpeg",
+            id: "Animals",
+        },
+        {
+            img: "Cues/Otter.jpeg",
+            id: "Animals",
         },
 
         ];
@@ -307,7 +355,7 @@ $(document).ready(function() {
             document.getElementById("Cue").src=cues[cueIdx].img;
             document.getElementById("Cue").style.top=70 + "%";  
         }
-        if( (cueIdx==5) | (cueIdx==10)){
+        if( (cueIdx==8) | (cueIdx==16)){
             randFeed();
         }
   	   
@@ -338,7 +386,7 @@ $(document).ready(function() {
             document.getElementById("Cue").src=cues[cueIdx].img;
             document.getElementById("Cue").style.top=70 + "%";  
         }
-        if( (cueIdx==5) | (cueIdx==10)){
+        if( (cueIdx==8) | (cueIdx==16)){
             randFeed();
         }
        
@@ -370,7 +418,7 @@ $(document).ready(function() {
             document.getElementById("Cue").src=cues[cueIdx].img;
             document.getElementById("Cue").style.top=70 + "%";  
         }
-        if( (cueIdx==5) | (cueIdx==10)){
+        if( (cueIdx==8) | (cueIdx==16)){
             randFeed();
         }
        
