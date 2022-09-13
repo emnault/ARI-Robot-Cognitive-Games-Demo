@@ -27,7 +27,7 @@ class DefaultWeb {
         // Respond
         this.tts_action.sendGoal({
             rawtext: {
-                text: "<mark name='doTrick trickName=show_right'/>Use the following rating scale to rate how well you did.", 
+                text: "<mark name='doTrick trickName=show_right'/>Use the following rating scale to rate how well you did. <mark name='doTrick trickName=alive_5'/>If you'd like to skip this part, press next without selecting an option.", 
                 lang_id: "en_GB"
             }
         }, (response) => {
